@@ -1,5 +1,5 @@
 # Presentation Content
-[![Creative Commons License](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png")](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+[<img src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt=Creative Commons License">](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
 [Introduction to Microcontroller Programming](https://github.com/shackspace/uc-basics)
 by [Joachim Fenkes](https://github.com/dop3j0e/) & [Gregor Jehle](https://github.com/hdznrrd/) 
 is licensed under a 
