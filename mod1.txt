@@ -157,3 +157,18 @@ Info:
   Remember to set the pin to output first
   Use a simple delay loop, nothing fancy
   We left a trap for you to discover, so call us if you run into problems ;)
+
+  
+
+Base Clock Prescaler
+
+The ATmega32U4 has an internal clock divider to divide down the external clock.
+Example uses:
+  Power saving by dynamic frequency switching
+  Adapt to lower voltages (only 8 MHz at 3.3V)
+
+Trap: Defaults to "divide by 8" in factory settings!
+
+#include <avr/power.h>
+
+clock_prescale_set(clock_div_1);
