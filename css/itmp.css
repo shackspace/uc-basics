@@ -32,3 +32,8 @@
 .reveal section img {
 	border: none;
 }
+
+.reveal section .photowrapper {
+  font-size: 50%;
+  display: inline-block;
+}
