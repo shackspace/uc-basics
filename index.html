@@ -32,15 +32,136 @@
 </div>
 
 <div class="slides">
-<section>
-  <h3 class="readable">Introduction to Microcontroller Programming</h3>
-  <h4 class="readable">using an Atmel ATmega32U4</h4>
+<section><h3>Introduction to Microcontroller Programming</h3>
+  <h4>using an Atmel ATmega32U4</h4>
   <div>
     <p>Joachim Fenkes (@dop3j0e)</p>
     <p>Gregor Jehle (@hdznrrd)</p>
   </div>
   <img src="lib/ccbyncsa.png">
 </section>
+
+<section><h3>Today's Goals</h3>
+<ul class="fragment">
+  <li>Understand
+    <ul class="fragment">
+      <li>Microcontroller programming basics</li>
+      <li>I/O and Hardware assist units</li>
+      <li>Basic external peripherals</li>
+      <li>Reading Datasheets</li>
+    </ul>
+  </li>
+  <li>Implement
+    <ul class="fragment">
+      <li>Hello World</li>
+      <li>LED Larson Scanner</li>
+      <li>Knob control</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+<section><h3>Who we are</h3>
+<ul>
+  <li>Joachim "Jocki" Fenkes
+    <ul>
+      <li>created the board we're using today</li>
+    </ul>
+  </li>
+
+  <li>Gregor "hadez" Jehle
+    <ul>
+      <li>programs MCUs for a living</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Who are you?</h3>
+<ul>
+  <li>Please introduce yourselves with
+	  <ul>
+      <li>Your name</li>
+	    <li><em>One</em> sentence about your prior knowledge with microcontrollers</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+<section>
+<h3>Dedicated to</h3>
+
+Jan-Bernd Themann<br/>
+R.I.P., my friend
+</section>
+
+
+<section><h3>What is a Microcontroller?</h3>
+
+"A microcontroller (sometimes abbreviated µC, uC or MCU) is a <strong>small computer on a single integrated circuit</strong> containing a processor core, memory, and programmable input/output peripherals. Program memory in the form of NOR flash or OTP ROM is also often included on chip, as well as a typically small amount of RAM. Microcontrollers are <strong>designed for embedded applications</strong>, in contrast to the microprocessors used in personal computers or other general purpose applications." (Source: <a href="http://en.wikipedia.org/w/index.php?title=Microcontroller&oldid=607593541">Wikipedia</a>)
+</section>
+
+
+<section><h3>Applications</h3>
+
+[bild von wama, kaffeemaschine, toaster, ...]
+</section>
+
+<section><h3>Typical block diagram</h3>
+</section>
+
+
+<section><h3>Limitations</h3>
+<ul>
+  <li>A uC ain't a PC!</li>
+  <li>Optimized for low power and size<li>
+  <li>Slow compared to a PC or a smartphone</li>
+  <li>No floating point unit</li>
+  <li>Little RAM</li>
+  <li>Sometimes not even HW multiplication</li>
+</ul>
+</section>
+
+
+<section><h3>Our learning modules today</h3>
+<ol>
+  <li class="fragment">Hello, World!</li>
+  <li class="fragment">Interrupts & Timers</li>
+  <li class="fragment">LEDs & I/O</li>
+  <li class="fragment">Extending your I/O</li>
+  <li class="fragment">SPI - HW serial data</li>
+  <li class="fragment">Knob Control</li>
+  <li class="fragment">Dimming stuff digitally</li>
+  <li class="fragment">(optional) Building an RGB Moodlight</li>
+</ol>
+</section>
+
+
+<section><h3>The ATmega32U4 microcontroller</h3>
+</section>
+
+<section><h3>The TinyMega Board</h3>
+<ul>
+  <li>The MCU itself</li>
+  <li>Clock crystal (16 MHz)</li>
+  <li>USB jack</li>
+  <li>Two LEDs (Power, User)</li>
+  <li>Two buttons (Reset, Bootloader/User)</li>
+</ul>
+</section>
+
+
+<section><h3>The ATmega32U4 datasheet</h3>
+<ul>
+  <li>Most important piece of documentation</li>
+  <li>433 pages o.O</li>
+  <li>[gif: DON'T PANIC]</li>
+  <li>We will guide you to the relevant parts</li>
+  <li>General intro to datasheets will follow later</li>
+  <li>Get it here: <a href="http://bit.ly/1jjFFMb">bit.ly/1jjFFMb</a></li>
+</section>
+
 
 <section id="introduction"></section>
 <section id="hello-world"></section>
@@ -57,7 +178,7 @@
     <li>Slides: <a href="https://github.com/shackspace/uc-basics">github.com/shackspace/uc-basics</a></li>
     <li>Datasheets
       <ul>
-        <li>Microcontroller (ATmega23U4)</li>
+        <li>Microcontroller (ATmega23U4): <a href="http://bit.ly/1jjFFMb">bit.ly/1jjFFMb</a></li>
         <li>LED</li>
         <li>Shift Register (74595)</li>
       </ul>
@@ -70,10 +191,6 @@
         @hdznrrd, github.com/hdznrrd, uc-basics@follvalsch.de</li>
       </ul>
     </li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
   </ul>
 </section>
 

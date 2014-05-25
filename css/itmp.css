@@ -3,6 +3,10 @@
 	list-style-type: none;
 }
 
+.reveal li {
+  padding-bottom: 0.3em;  
+}
+
 .reveal div#staticnav {
 	height: 30px;
   width: 40px;
