@@ -22,3 +22,7 @@
 .reveal .fa-2x {
 	font-size: 200%;
 }
+
+.reveal img {
+	border: none;
+}
