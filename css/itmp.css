@@ -5,12 +5,14 @@
 
 .reveal div#staticnav {
 	height: 30px;
+  width: 40px;
 	overflow: hidden;
 	font-size: 50%;
 }
 
 .reveal div#staticnav:hover {
 	height: auto;
+  width: auto;
 }
 
 .reveal .fa {
