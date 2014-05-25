@@ -1,0 +1,24 @@
+.reveal ul {
+	list-style: none;
+	list-style-type: none;
+}
+
+.reveal div#staticnav {
+	height: 30px;
+	overflow: hidden;
+	font-size: 50%;
+}
+
+.reveal div#staticnav:hover {
+	height: auto;
+}
+
+.reveal .fa {
+	font-family: 'FontAwesome';
+	font-style: normal;
+  	text-rendering: auto;
+}
+
+.reveal .fa-2x {
+	font-size: 200%;
+}
