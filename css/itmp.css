@@ -37,3 +37,7 @@
   font-size: 50%;
   display: inline-block;
 }
+
+.reveal * .inline {
+  display: inline;
+}

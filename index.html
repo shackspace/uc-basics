@@ -188,6 +188,215 @@ R.I.P., my friend
 #######################################################
 #######################################################
 
+              MODULE 1: LEDs and I/O
+
+#######################################################
+#######################################################
+-->
+
+
+<section id="hello-world"><h3>Module 1</h3>
+<h4>Hello, World!</h4>
+
+in which an LED will blink!
+
+[gif: blinkender tinymega]
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+
+[tinymega] [usb-kabel] [notebook]
+</section>
+
+
+<section><h3>Structure of MCU firmware</h3>
+<p>
+It's a program like any other!
+
+<ul>
+  <li><pre class="inline">main()</pre> function
+    <ul>
+      <li>Initialization code</li>
+      <li>Main loop</li>
+    </ul>
+  </li>
+  <li>Main loop is never exited</li>
+</ul>
+</p>
+</section>
+
+
+<section><h3>General Purpose I/O</h3>
+<ul>
+  <li>Most I/O pins of the ATmega can be controlled directly as digital I/O
+    <ul>
+      <li>Output mode: Write a zero (GND) or one (supply voltage, VDD)</li>
+      <li>Input mode: Convert pin voltage to one or zero and return<br/>
+          Optional pull-up resistor selectable by software</li>
+    </ul>
+  </li>
+  <li>Pins are grouped into "ports"
+    <ul>
+      <li>ATmega32U4 has ports B, C, D, E, F</li>
+      <li>Pins inside a port are numbered 0..7<br/>
+          Ex. B1, B2, C7</li>
+    </ul>
+  </li>
+  <li>Not all ports have all pins populated</li>
+</ul>
+</section>
+
+
+<section><h3>Port control though registers</h3>
+<ul>
+  <li>All hardware units in AVR MCUs are controlled through memory-mapped registers
+    <ul>
+      <li>Like special RAM variables</li>
+    </ul>
+  </li>
+  <li>Each port has three registers
+    <ul>
+      <li>PORTx -- Write output values or enable/disable pull-up</li>
+      <li>PINx  -- Read input values</li>
+      <li>DDRx  -- Data Direction Register; selects in (0) / out (1) direction per pin</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Port control: Example</h3>
+<pre><code data-trim>#include &lt;avr/io.h&gt;
+
+{
+	// After reset, all pins default to input, no pull-up
+	PORTB = (1 << PB3);		// Enable pull-up on B3
+	DDRB = (1 << PB2);		// Set B2 to output, all others to input
+	if (!(PINB & _BV(PB3)))		// If something pulls B3 down...
+		PORTB |= _BV(PB2);	// Set B2 to high, keep rest as is
+}</code></pre>
+</section>
+
+
+<section><h3>Simple delay</h3>
+<pre><code data-trim>#define F_CPU 16000000UL  // CPU clock is 16 MHz
+#include &lt;util/delay.h&gt;
+
+{
+	_delay_ms(1000);  // waaaait a sec...
+	_delay_us(10);    // and a bit more
+}</code></pre>
+</section>
+
+<section><h3>Toolchain installation</h3>
+<ul>
+  <li>Linux
+    <ul>
+      <li><pre>apt-get install avr-gcc dfu-programmer</pre></li>
+    </ul>
+  </li>
+  <li>Windows
+    <ul>
+      <li><a href="http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx">AVR 8-bit Toolchain</a></li>
+      <li><a href="http://www.atmel.com/tools/FLIP.aspx">FLIP programmer</a></li>
+      <li><a href="http://shackspace.de/wiki/lib/exe/fetch.php?media=project:tinymega:atm32u4dfu.zip">USB driver</a> (if necessary)</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Template code</h3>
+Create a file <code>module1.c</code>:
+<pre><code data-trim>#include &lt;avr/io.h&gt;
+#include &lt;util/delay.h&gt;
+
+int main(void)
+{
+	// Setup code goes here
+	while (1) {
+		// Main loop goes here
+	}
+}</code></pre>
+</section>
+
+
+<section><h3>Build</h3>
+<ul>
+  <li>Compile the source
+	  <ul>
+      <li><pre class="inline">avr-gcc -mmcu=atmega32u4 -DF_CPU=16000000UL \
+        -Os -o module1.elf module1.c</pre></li>
+    </ul>
+  </li>
+  <li>Generate an Intel HEX file for flashing
+	  <ul>
+      <li><pre class="inline">avr-objcopy -O ihex module1.elf module1.hex</pre></li>
+    </ul>
+  </li>
+  <li>Display the firmware size
+    <ul>
+      <li><pre class="inline">avr-size module1.elf</pre></li>
+	    <li><pre class="inline">text + data</pre> is Flash usage</li>
+	    <li><pre class="inline">data + bss</pre> is RAM usage</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Program (Linux)</h3>
+<p>
+<ol>
+  <li>Erase the whole device -- bootloader always needs this<br/>
+      <pre class="inline">sudo dfu-programmer atmega32u4 erase</pre>
+  </li>
+  <li>Program the HEX file we just generated<br/>
+      <pre class="inline">sudo dfu-programmer atmega32u4 flash module1.hex</pre>
+  </li>
+  <li>Have the bootloader jump into the firmware<br/>
+      <pre class="inline">sudo dfu-programmer atmega32u4 start</pre>
+  </li>
+</ol>
+<br/><br/>
+Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> group.
+</p>
+</section>
+
+
+<section><h3>Program (Windows)</h3>
+<img src="lib/flip.png">
+</section>
+
+<section>
+  <section><h3>Now go forth and code!</h3>
+  <ul>
+    <li>Task: Make the user LED on the TinyMega blink with 1 Hz
+      <ul>
+        <li>(the MCU equivalent of "Hello, World!")</li>
+      </ul>
+    </li>
+    <li>Info:
+      <ul>
+        <li>The LED is connected to pin E6</li>
+        <li>Set the pin to 1 to turn on the LED</li>
+        <li>Remember to set the pin to output first</li>
+        <li>Use a simple delay loop, nothing fancy</li>
+        <li>We left a trap for you to discover, so call us if you run into problems ;)</li>
+      </ul>
+    </li>
+  </ul>
+  </section>
+  <section><h3>It's a trap!</h3>
+
+  </section
+</section>
+
+<!--
+#######################################################
+#######################################################
+
                  META INFORMATION
 
 #######################################################
@@ -242,7 +451,8 @@ R.I.P., my friend
     // Optional libraries used to extend on reveal.js
     dependencies: [
       { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
     ]
   });
 </script>
