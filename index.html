@@ -388,8 +388,22 @@ Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user 
     </li>
   </ul>
   </section>
-  <section><h3>It's a trap!</h3>
-
+  <section><h3>Base Clock Prescaler</h3>
+  <ul>
+    <li>The ATmega32U4 has an internal clock divider to divide down the external clock.</li>
+    <li>Example uses:
+      <ul>
+        <li>Power saving by dynamic frequency switching</li>
+        <li>Adapt to lower voltages (only 8 MHz at 3.3V)</li>
+      </ul>
+    </li>
+    <li>Trap: Defaults to "divide by 8" in factory settings!</li>
+    <li>Solution:
+    <pre><code data-trim>#include &lt;avr/power.h&gt;
+clock_prescale_set(clock_div_1);</code></pre>
+    </li>
+  </ul>
+  <br/><br/>
   </section
 </section>
 
