@@ -369,43 +369,280 @@ Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user 
 <img src="lib/flip.png">
 </section>
 
-<section>
-  <section><h3>Now go forth and code!</h3>
-  <ul>
-    <li>Task: Make the user LED on the TinyMega blink with 1 Hz
-      <ul>
-        <li>(the MCU equivalent of "Hello, World!")</li>
-      </ul>
-    </li>
-    <li>Info:
-      <ul>
-        <li>The LED is connected to pin E6</li>
-        <li>Set the pin to 1 to turn on the LED</li>
-        <li>Remember to set the pin to output first</li>
-        <li>Use a simple delay loop, nothing fancy</li>
-        <li>We left a trap for you to discover, so call us if you run into problems ;)</li>
-      </ul>
-    </li>
-  </ul>
-  </section>
-  <section><h3>Base Clock Prescaler</h3>
-  <ul>
-    <li>The ATmega32U4 has an internal clock divider to divide down the external clock.</li>
-    <li>Example uses:
-      <ul>
-        <li>Power saving by dynamic frequency switching</li>
-        <li>Adapt to lower voltages (only 8 MHz at 3.3V)</li>
-      </ul>
-    </li>
-    <li>Trap: Defaults to "divide by 8" in factory settings!</li>
-    <li>Solution:
-    <pre><code data-trim>#include &lt;avr/power.h&gt;
-clock_prescale_set(clock_div_1);</code></pre>
-    </li>
-  </ul>
-  <br/><br/>
-  </section
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+  <li>Task: Make the user LED on the TinyMega blink with 1 Hz
+    <ul>
+      <li>(the MCU equivalent of "Hello, World!")</li>
+    </ul>
+  </li>
+  <li>Info:
+    <ul>
+      <li>The LED is connected to pin E6</li>
+      <li>Set the pin to 1 to turn on the LED</li>
+      <li>Remember to set the pin to output first</li>
+      <li>Use a simple delay loop, nothing fancy</li>
+      <li>We left a trap for you to discover, so call us if you run into problems ;)</li>
+    </ul>
+  </li>
+</ul>
 </section>
+
+
+<section><h3>Base Clock Prescaler</h3>
+<ul>
+  <li>The ATmega32U4 has an internal clock divider to divide down the external clock.</li>
+  <li>Example uses:
+    <ul>
+      <li>Power saving by dynamic frequency switching</li>
+      <li>Adapt to lower voltages (only 8 MHz at 3.3V)</li>
+    </ul>
+  </li>
+  <li>Trap: Defaults to "divide by 8" in factory settings!</li>
+  <li>Solution:
+  <pre><code data-trim>#include &lt;avr/power.h&gt;
+clock_prescale_set(clock_div_1);</code></pre>
+  </li>
+</ul>
+<br/><br/>
+</section
+
+
+<!--
+#######################################################
+#######################################################
+
+              MODULE 1: LEDs and I/O
+
+#######################################################
+#######################################################
+-->
+
+
+<section><h3>Module 2</h3>
+<h4>Interrupts & Timers</h4>
+
+in which we will waste less CPU cycles!
+
+[gif: blinkender tinymega]
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+[tinymega] [usb-kabel] [notebook]
+</section>
+
+
+<section><h3>Problems with the previous solution</h3>
+<ul>
+  <li>Hogs CPU cycles ("busy waiting")</li>
+  <li>Burns power: CPU constantly busy</li>
+  <li>Adding work will make accurate timing difficult/impossible</li>
+</ul>
+</section>
+
+
+<section><h3>Solution: Hardware Timers!</h3>
+<ul>
+  <li>ATmega32U4 has four Timer/Counter (T/C) modules</li>
+  <li>HW counter, counting up at (divided) clock frequency</li>
+  <li>Compare registers to trigger actions at certain values</li>
+  <li>Can also directly control I/O pins, capture event timestamps, ...</li>
+</ul>
+</section>
+
+
+<section><h3>Interrupts (IRQs)</h3>
+<ul>
+  <li>Asynchronous interruption of program flow</li>
+  <li>Can happen at any time, triggered by hardware</li>
+  <li>Many IRQ sources with own handlers
+    <ul>
+      <li>Timer overflow, Timer compare, Pin toggle, ...</li>
+    </ul>
+  </li>
+  <li>Can be enabled / disabled globally
+    <ul>
+      <li><pre class="inline">sei()</pre>, <pre class="inline">cli()</pre></li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Interrupt Handlers</h3>
+<ul>
+  <li>Special function, "called" through interrupt
+    <ul>
+      <li>Also called "Interrupt Service Routine" (ISR)</li>
+      <li>Return from handler continues program</li>
+    </ul>
+  </li>
+</ul>
+
+<br/><br/>
+<pre><code data-trim>#include &lt;avr/interrupt.h&gt
+
+ISR(TIMER0_COMPA_vect)
+{
+	// Code goes here
+}</code></pre>
+</section>
+
+
+<section><h3>ISR best practices</h3>
+<ul>
+  <li>You're just interrupting someone else
+    <ul>
+      <li>Keep it short!</li>
+    </ul>
+  </li>
+  <li>Communication with main loop: shared global variables
+    <ul>
+      <li>Declare them <code>volatile</code>!
+        <ul>
+          <li>Tells compiler they may change without notice</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Setting up a Timer/Counter</h3>
+<p>Let's look at the datasheet, chapter 14</p>
+
+<p>o.O So many options!<br/>
+Let's pick a few that make sense for us</p>
+</section>
+
+
+<section><h3>Choosing a mode</h3>
+<ul>
+  <li>We want to wait for a given time, generate an IRQ, repeat</li>
+  <li>CTC mode (14.8.2) sounds like the one for us:
+    <ul>
+      <li>Count to N, interrupt, start back at zero.</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Choosing a prescaler</h3>
+<ul>
+  <li>T/C1 can count up to 65535</li>
+  <li>We want to wait for half a second</li>
+  <li>Choose slowest prescaler value of CLK/1024
+    <ul>
+      <li>15625 ticks per second</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Building the T/C control registers</h3>
+<ul>
+  <li>TCCR1A - 14.10.1
+    <ul>
+      <li>We can ignore the Compare Output Modes</li>
+      <li>Choose WGM 4: CTC with TOP = OCR1A</li>
+    </ul>
+  </li>
+  <li>TCCR1B - 14.10.3
+    <ul>
+      <li>We can ignore Input Capture</li>
+      <li>Clock Select = 0b101 (CLK / 1024)</li>
+    </ul>
+  </li>
+  <li>TCCR1C - 14.10.5
+    <ul>
+      <li>Can be ignored</li>
+    </ul>
+  </li>  
+</ul>
+</section>
+
+
+<section><h3>Building the T/C control registers</h3>
+<ul>
+  <li>OCR1A - 14.10.9
+    <ul>
+      <li>Determines IRQ frequency</li>
+    </ul>
+  </li>
+  <li>TIMSK1 - 14.10.17
+    <ul>
+      </li>Enable OCIE1A, disable all others</li>
+    </ul>
+  </li>
+  <li>TIFR1 - 14.10.19
+    <ul>
+      <li>Write 0xFF once to clear all pending IRQs</li>
+      <li>Just to be safe</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+<section><h3>The setup code</h3>
+<pre><code data-trim>#include &lt;avr/io.h&gt;
+
+{
+	TCCR1A = 0;
+	TCCR1C = 0;
+	TCNT1  = 0;
+	OCR1A  = 7812;
+	TIMSK1 = 1 << OCIE1A;
+	TIFR1  = 0xFF;
+	// Set TCCR1B last because setting CS starts the T/C
+	TCCR1B = (1 << WGM12) | (5 << CS10);
+}</code></pre>
+</section>
+
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+  <li>Task: Transform the busy loop from module 1 into a timer-driven blinking LED.
+    <ul>
+      <li><pre class="inline">cp module1.c module2.c</pre></li>
+    </ul>
+  </li>
+  <li>Info:
+    <ul>
+      <li>Use T/C 1 in CTC mode</li>
+      <li>Remember to enable interrupts after setup</li>
+    </ul>
+  </li>
+  <li>Question:
+    <ul>
+      <li>Which interrupt to hook?</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+
+<section><h3>Tips & Tricks</h3>
+<ul>
+  <li>Toggle a port pin value using XOR:
+    <ul>
+      <li><pre class="inline"><code data-trim>PORTE ^= 1 << PE6;</code></pre>
+    </ul>
+  </li>
+  <li>Save power by using Sleep Mode in main loop
+    <ul>
+      <li>Chapter 7 of datasheet<br/>
+          <a href="http://www.nongnu.org/avr-libc/user-manual/group__avr__sleep.html">avr-libc sleep mode documentation</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</section>
+
 
 <!--
 #######################################################
