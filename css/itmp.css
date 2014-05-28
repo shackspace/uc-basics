@@ -41,3 +41,13 @@
 .reveal * .inline {
   display: inline;
 }
+
+.reveal * div.component {
+	padding: 5px;
+	background-color: #aaa;
+	display: inline-block;
+}
+.reveal section img {
+	background: none;
+	box-shadow: none;
+}
