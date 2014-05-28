@@ -51,3 +51,8 @@
 	background: none;
 	box-shadow: none;
 }
+
+.reveal section .attribution {
+	font-size: 50%;
+	line-height: 1;
+}
