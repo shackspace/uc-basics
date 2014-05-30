@@ -268,14 +268,14 @@ It's a program like any other!
           Optional pull-up resistor selectable by software</li>
     </ul>
   </li>
-  <li>Pins are grouped into "ports"
+  <li class="fragment">Pins are grouped into "ports"
     <ul>
       <li>ATmega32U4 has ports B, C, D, E, F</li>
       <li>Pins inside a port are numbered 0..7<br/>
           Ex. B1, B2, C7</li>
     </ul>
   </li>
-  <li>Not all ports have all pins populated</li>
+  <li class="fragment">Not all ports have all pins populated</li>
 </ul>
 </section>
 
@@ -287,7 +287,7 @@ It's a program like any other!
       <li>Like special RAM variables</li>
     </ul>
   </li>
-  <li>Each port has three registers
+  <li class="fragment">Each port has three registers
     <ul>
       <li>PORTx -- Write output values or enable/disable pull-up</li>
       <li>PINx  -- Read input values</li>
@@ -384,15 +384,15 @@ int main(void)
   <li>Erase the whole device -- bootloader always needs this<br/>
       <pre class="inline">sudo dfu-programmer atmega32u4 erase</pre>
   </li>
-  <li>Program the HEX file we just generated<br/>
+  <li class="fragment">Program the HEX file we just generated<br/>
       <pre class="inline">sudo dfu-programmer atmega32u4 flash module1.hex</pre>
   </li>
-  <li>Have the bootloader jump into the firmware<br/>
+  <li class="fragment">Have the bootloader jump into the firmware<br/>
       <pre class="inline">sudo dfu-programmer atmega32u4 start</pre>
   </li>
 </ol>
 <br/><br/>
-Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> group.
+<p class="fragment">Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> group.</p>
 </p>
 </section>
 
@@ -409,7 +409,7 @@ Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user 
       <li>(the MCU equivalent of "Hello, World!")</li>
     </ul>
   </li>
-  <li>Info:
+  <li class="fragment">Info:
     <ul>
       <li>The LED is connected to pin E6</li>
       <li>Set the pin to 1 to turn on the LED</li>
@@ -425,14 +425,14 @@ Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user 
 <section><h3>Base Clock Prescaler</h3>
 <ul>
   <li>The ATmega32U4 has an internal clock divider to divide down the external clock.</li>
-  <li>Example uses:
+  <li class="fragment">Example uses:
     <ul>
       <li>Power saving by dynamic frequency switching</li>
       <li>Adapt to lower voltages (only 8 MHz at 3.3V)</li>
     </ul>
   </li>
-  <li>Trap: Defaults to "divide by 8" in factory settings!</li>
-  <li>Solution:
+  <li class="fragment">Trap: Defaults to "divide by 8" in factory settings!</li>
+  <li class="fragment">Solution:
   <pre><code data-trim>#include &lt;avr/power.h&gt;
 clock_prescale_set(clock_div_1);</code></pre>
   </li>
@@ -481,8 +481,8 @@ clock_prescale_set(clock_div_1);</code></pre>
 <ul>
   <li>ATmega32U4 has four Timer/Counter (T/C) modules</li>
   <li>HW counter, counting up at (divided) clock frequency</li>
-  <li>Compare registers to trigger actions at certain values</li>
-  <li>Can also directly control I/O pins, capture event timestamps, ...</li>
+  <li class="fragment">Compare registers to trigger actions at certain values</li>
+  <li class="fragment">Can also directly control I/O pins, capture event timestamps, ...</li>
 </ul>
 </section>
 
@@ -491,12 +491,12 @@ clock_prescale_set(clock_div_1);</code></pre>
 <ul>
   <li>Asynchronous interruption of program flow</li>
   <li>Can happen at any time, triggered by hardware</li>
-  <li>Many IRQ sources with own handlers
+  <li class="fragment">Many IRQ sources with own handlers
     <ul>
       <li>Timer overflow, Timer compare, Pin toggle, ...</li>
     </ul>
   </li>
-  <li>Can be enabled / disabled globally
+  <li class="fragment">Can be enabled / disabled globally
     <ul>
       <li><pre class="inline">sei()</pre>, <pre class="inline">cli()</pre></li>
     </ul>
@@ -532,7 +532,7 @@ ISR(TIMER0_COMPA_vect)
       <li>Keep it short!</li>
     </ul>
   </li>
-  <li>Communication with main loop: shared global variables
+  <li class="fragment">Communication with main loop: shared global variables
     <ul>
       <li>Declare them <code>volatile</code>!
         <ul>
@@ -546,17 +546,18 @@ ISR(TIMER0_COMPA_vect)
 
 
 <section><h3>Setting up a Timer/Counter</h3>
-<p>Let's look at the datasheet, chapter 14</p>
-
-<p>o.O So many options!<br/>
-Let's pick a few that make sense for us</p>
+<ul>
+  <li>Let's look at the datasheet, chapter 14</li>
+  <li class="fragment">o.O So many options!<br/>
+    Let's pick a few that make sense for us</li>
+</ul>
 </section>
 
 
 <section><h3>Choosing a mode</h3>
 <ul>
   <li>We want to wait for a given time, generate an IRQ, repeat</li>
-  <li>CTC mode (14.8.2) sounds like the one for us:
+  <li class="fragment">CTC mode (14.8.2) sounds like the one for us:
     <ul>
       <li>Count to N, interrupt, start back at zero.</li>
     </ul>
@@ -569,7 +570,7 @@ Let's pick a few that make sense for us</p>
 <ul>
   <li>T/C1 can count up to 65535</li>
   <li>We want to wait for half a second</li>
-  <li>Choose slowest prescaler value of CLK/1024
+  <li class="fragment">Choose slowest prescaler value of CLK/1024
     <ul>
       <li>15625 ticks per second</li>
     </ul>
@@ -581,19 +582,19 @@ Let's pick a few that make sense for us</p>
 <section><h3>Building the T/C control registers</h3>
 <ul>
   <li>TCCR1A - 14.10.1
-    <ul>
+    <ul class="fragment">
       <li>We can ignore the Compare Output Modes</li>
       <li>Choose WGM 4: CTC with TOP = OCR1A</li>
     </ul>
   </li>
   <li>TCCR1B - 14.10.3
-    <ul>
+    <ul class="fragment">
       <li>We can ignore Input Capture</li>
       <li>Clock Select = 0b101 (CLK / 1024)</li>
     </ul>
   </li>
   <li>TCCR1C - 14.10.5
-    <ul>
+    <ul class="fragment">
       <li>Can be ignored</li>
     </ul>
   </li>  
@@ -604,17 +605,17 @@ Let's pick a few that make sense for us</p>
 <section><h3>Building the T/C control registers</h3>
 <ul>
   <li>OCR1A - 14.10.9
-    <ul>
+    <ul class="fragment">
       <li>Determines IRQ frequency</li>
     </ul>
   </li>
   <li>TIMSK1 - 14.10.17
-    <ul>
+    <ul class="fragment">
       </li>Enable OCIE1A, disable all others</li>
     </ul>
   </li>
   <li>TIFR1 - 14.10.19
-    <ul>
+    <ul class="fragment">
       <li>Write 0xFF once to clear all pending IRQs</li>
       <li>Just to be safe</li>
     </ul>
@@ -645,13 +646,13 @@ Let's pick a few that make sense for us</p>
       <li><pre class="inline">cp module1.c module2.c</pre></li>
     </ul>
   </li>
-  <li>Info:
+  <li class="fragment">Info:
     <ul>
       <li>Use T/C 1 in CTC mode</li>
       <li>Remember to enable interrupts after setup</li>
     </ul>
   </li>
-  <li>Question:
+  <li class="fragment">Question:
     <ul>
       <li>Which interrupt to hook?</li>
     </ul>
