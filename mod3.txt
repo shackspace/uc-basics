@@ -1,0 +1,70 @@
+Module 3
+
+LEDs & I/O
+
+in which we will revive K.I.T.T.!
+
+[gif: larson scanner]
+
+
+
+Stuff you will need
+
+[tinymega] [usb-kabel] [notebook]
+[breadboard] {breadboard-strippen]
+[leds] [widerstände]
+
+
+
+LED basics
+
+An LED's brightness depends on current
+Typical I<sub>F</sub>: 20 mA
+Let's check the datasheet for the expected V<sub>F</sub>
+
+
+
+Datasheets
+
+Typical sections:
+  1. Summary, core features and values
+  2. Basic operation
+  3. Absolute Maximum Ratings
+  4. Device characteristics
+     4a. Tables with min/typ/max values
+	 4b. Graphs
+  5. Detailed usage information
+  6. Example application circuits
+  7. Test circuits used
+  8. Package information, solder patterns
+  9. Order information, revisions, disclaimers
+
+
+
+Our LED
+
+I<sub>F</sub> = 20 mA
+V<sub>F</sub> = 1.8 V
+==> R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> = 160 &Omega;
+Pick nearest standard value: 150 &Omega;
+
+
+
+Recommended coding
+
+Build upon your code from last module
+	Change OCR1A to go faster
+Connect all LEDs to pins of the same port
+	One assignment to set them all
+
+
+
+Now go forth and code!
+
+Task: Implement a Larson Scanner
+      <code>cp module2.c module3.c</code>
+
+Info:
+	Remember correct port setup
+
+

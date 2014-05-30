@@ -1,0 +1,89 @@
+Module 4
+
+Extending your I/O
+
+in which three pins will control 16 LEDs!
+
+[gif: larson scanner mit 16 LEDs]
+
+
+
+Stuff you will need
+
+[tinymega] [usb-kabel] [notebook]
+[breadboard] {breadboard-strippen]
+[leds] [widerstände] [shiftis]
+
+
+
+What's a shift register?
+
+Converts serial data to parallel data or vice versa
+Data is shifted in/out bit by bit
+  A clock signal triggers a single shift
+
+Our device: Serial in, parallel out (SIPO)
+Latched: Outputs kept static while new data shifted in
+  Latch signal changes all outputs at once
+
+  
+
+How do I use a SIPO shift reg?
+
+for (i = 0 .. number of bits) {
+	set data input pin to next bit
+		(starting with outermost bit)
+	pulse clock pin
+}
+pulse latch pin
+
+
+
+Daisy Chaining
+
+A shift reg usually also has a serial output pin
+Can be used as input for another shift reg
+Clock and latch pins can be tied together
+Infinite shift register! \o/
+
+
+
+SN74HC595
+
+Part of the <a href="https://en.wikipedia.org/wiki/74_series">74xxx series</a> of standard logic
+	<a href="https://en.wikipedia.org/wiki/List_of_7400_series_integrated_circuits">Lots and lots and lots</a> of parts available
+	From every vendor
+	
+VV74SSNNN
+	VV - Vendor, e.g. SN for Texas Instruments
+	SS - Series, e.g. HC for High-Speed CMOS
+	NNN - Device ID, 595 is latched SIPO
+
+
+
+Circuit building
+
+Put the two 74HC595 onto the breadboard
+	Connect their VDD and GND pins
+	Tie both <span class="overbar">MR</span> pins to VDD
+	Connect DS of the first to a TinyMega pin
+	Connect DS of the second to Q7S of the first
+	Connect both SHCP pins to a second TinyMega pin
+	Connect both STCP pins to a third TinyMega pin
+
+Now place LEDs and resistors
+
+
+
+Now go forth and code!
+
+Task: Transform the Larson Scanner to use SIPO
+      <code>cp module3.c module4.c</code>
+
+Info:
+	Use a two-byte buffer for the LED states
+	Shift that buffer out to the SIPO
+	Use a simple loop, don't try to be smart
+
+Question:
+	Do you need delays between bits?
