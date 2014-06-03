@@ -38,6 +38,11 @@
   display: inline-block;
 }
 
+.reveal section div.component div {
+	display: inline-block;
+	color: black;
+}
+
 .reveal * .inline {
   display: inline;
 }
