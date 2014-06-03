@@ -61,3 +61,7 @@
 	font-size: 50%;
 	line-height: 1;
 }
+
+.reveal .overbar {
+	text-decoration: overline;
+}
