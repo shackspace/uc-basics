@@ -680,6 +680,105 @@ ISR(TIMER0_COMPA_vect)
 </section>
 
 
+
+<!--
+#######################################################
+#######################################################
+
+                 MODULE 3
+
+#######################################################
+#######################################################
+-->
+<section id="leds-and-io"><h3>Module 3</h3>
+<h4>LEDs & I/O</h4>
+<p>in which we will revive K.I.T.T.!</p>
+<p>[gif: larson scanner]</p>
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+[tinymega] [usb-kabel] [notebook]
+[breadboard] {breadboard-strippen]
+[leds] [widerst�nde]
+</section>
+
+
+<section><h3>LED basics</h3>
+<ul>
+	<li>An LED's brightness depends on current</li>
+	<li>Typical I<sub>F</sub>: 20 mA</li>
+	<li>Let's check the datasheet for the expected V<sub>F</sub></li>
+</ul>
+</section>
+
+
+<section><h3>Datasheets</h3>
+<ul>
+	<li>Typical sections:
+		<ol>
+			<li>Summary, core features and values</li>
+			<li>Basic operation</li>
+			<li>Absolute Maximum Ratings</li>
+			<li>Device characteristics
+				<ul>
+					<li>Tables with min/typ/max values</li>
+					<li>Graphs</li>
+				</ul>
+			</li>
+			<li>Detailed usage information</li>
+			<li>Example application circuits</li>
+			<li>Test circuits used</li>
+			<li>Package information, solder patterns</li>
+			<li>Order information, revisions, disclaimers</li>
+		</ol>
+	</li>
+	
+</ul>
+</section>
+
+
+<section><h3>Our LED</h3>
+<ul>
+	<li>I<sub>F</sub> = 20 mA</li>
+	<li>V<sub>F</sub> = 1.8 V</li>
+	<li>==> R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> = 160 &Omega;</li>
+	<li>Pick nearest standard value: 150 &Omega;</li>
+</ul>
+</section>
+
+
+<section><h3>Recommended coding</h3>
+<ul>
+	<li>Build upon your code from last module
+		<ul>
+			<li>Change OCR1A to go faster</li>
+		</ul>
+	</li>
+	<li>Connect all LEDs to pins of the same port
+		<ul>
+			<li>One assignment to set them all</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+	<li>Task: Implement a Larson Scanner
+		<ul>
+			<li><code>cp module2.c module3.c</code></li>
+		</ul>
+	</li>
+	<li>Info:
+		<ul>
+			<li>Remember correct port setup</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
 <!--
 #######################################################
 #######################################################
