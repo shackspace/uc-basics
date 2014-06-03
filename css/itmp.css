@@ -1,4 +1,4 @@
-.reveal ul, .reveal ul * ul {
+.reveal ul, .reveal ul * ul, .reveal ul * ul * ul {
 	list-style: none;
 	list-style-type: none;
 }
