@@ -920,6 +920,191 @@ pulse latch pin</code>
 #######################################################
 #######################################################
 
+                 MODULE 5
+
+#######################################################
+#######################################################
+-->
+<section id="spi"><h3>Module 5</h3>
+<h4>SPI - HW serial data</h4>
+<p>in which a loop will move into hardware!</p>
+<p>[gif: larson scanner mit 16 LEDs]</p>
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+<p><div class="component">
+<div style="width: 200px"><img src="lib/usb_cable.png"></div>
+<div style="width: 200px"><img src="lib/tinymega_goff_boff.png"></div>
+<div style="width: 200px"><img src="lib/breadboard.png"></div><br/>
+<div style="width: 200px"><img src="lib/jumper_wire.png"><br/>several</div>
+<div style="width: 200px"><img src="lib/led_red.png"><br/>5x</div>
+<div style="width: 200px"><img src="lib/resistor.png"><br/>5x</div>
+<div style="width: 200px"><img src="lib/DIP16.png"><br/>2x</div>
+</div></p>
+</section>
+
+
+<section><h3>Bit-banging</h3>
+<ul>
+	<li>Common term in embedded programming</li>
+	<li>Operating bit protocol by toggling pins in software</li>
+	<li>Con: Not very hardware efficient</li>
+	<li>Pro: Any protocol can be implemented</li>
+</ul>
+</section>
+
+
+<section><h3>What is SPI?</h3>
+<ul>
+	<li>"Serial Peripheral Interface"</li>
+	<li>Basically a daisy chain of shift registers</li>
+	<li>"Master" drives the chain, supplies the clock</li>
+	<li>"Slaves" only react</li>
+	<li>Last slave output may go back into the �C for return data</li>
+	<li>No defined protocol for actual data
+		<ul>
+			<li>Device datasheets will tell</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>SPI signals</h3>
+<ul>
+	<li>MOSI - Master Out / Slave In</li>
+	<li>MISO - Master In / Slave Out</li>
+	<li>SCK  - Serial Clock</li>
+	<li>SS   - Slave Select (optional)</li>
+</ul>
+</section>
+
+
+<section><h3>SPI applications</h3>
+<ul>
+	<li>Control any number of SPI slaves</li>
+	<li>Generally, shift out serial data with clock</li>
+	<li>We can use this for our SIPO shift regs!</li>
+</ul>
+</section>
+
+
+<section><h3>SPI capabilities in the ATmega</h3>
+<ul>
+	<li>Both master and slave mode supported</li>
+	<li>LSB-first and MSB-first modes</li>
+	<li>Four kinds of CLK vs. data relationships (17.2)
+		<ul>
+			<li>Low-active vs. high-active clock</li>
+			<li>Sample on leading or trailing edge of clock</li>
+		</ul>
+	</li>
+	<li>Interrupt on byte completion</li>
+</ul>
+</section>
+
+
+<section><h3>SPI pins on the ATmega</h3>
+<ul>
+	<li>SPI pins mapped to fixed port pins
+		<ul>
+			<li>Other MCUs are more flexible</li>
+		</ul>
+	</li>
+	<li>Trap: Be careful what you use the SS pin for!
+		<ul>
+			<li>Could abort transmission in Master mode (17.1.2)</li>
+		</ul>
+	</li>
+	<li>Pin data controlled by HW</li>
+	<li>FW responsible for setting up pin direction!</li>
+</ul>
+</section>
+
+
+<section><h3>Setting up the SPI controller</h3>
+<ul>
+	<li>SPCR - SPI Control Reg (17.1.3)
+		<ul>
+			<li>Most bits are obvious, but:</li>
+			<li>Data order?</li>
+			<li>Clock polarity?</li>
+			<li>Clock phase?</li>
+		</ul>
+	</li>
+	<li>SPSR - SPI Status Reg (17.1.4)
+		<ul>
+			<li>Read before first writing SPDR</li>
+			<li>Clears any pending interrupts</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+	
+<section><h3>SPI transmission</h3>
+<ul>
+	<li>SPDR - SPI Data Reg (17.1.5)
+		<ul>
+			<li>Write data here</li>
+			<li>Don't write again until byte finished</li>
+		</ul>
+	</li>
+	<li>Handle next byte(s) in SPI interrupt
+		<ul>
+			<li>Use volatile data pointer</li>
+			<li>Write next byte to SPDR</li>
+			<li>When transfer finished
+				<ul>
+					<li>Disable SPI to be safe</li>
+					<li>Strobe LATCH signal</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>Debugging technique</h3>
+<ul>
+	<li>Use unused pin as debug signal</li>
+	<li>Set / reset on given events</li>
+	<li>Watch on oscilloscope to:
+		<ul>
+			<li>Measure signal timing</li>
+			<li>Find out time taken by code</li>
+			<li>Trigger on sporadic events</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+	<li>Task: Transform SIPO code from bit-banging to SPI
+		<ul>
+			<li><pre><code>cp module4.c module5.c</code></pre></li>
+		</ul>
+	</li>
+	<li>Info:
+		<ul>
+			<li>Make sure you use the correct pins</li>
+			<li>Remember to set up pin directions</li>
+			<li>Start SPI xfer on timer IRQ</li>
+			<li>Keep SPI running through SPI IRQ</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<!--
+#######################################################
+#######################################################
+
                  META INFORMATION
 
 #######################################################
