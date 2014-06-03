@@ -784,6 +784,138 @@ ISR(TIMER0_COMPA_vect)
 </ul>
 </section>
 
+
+<!--
+#######################################################
+#######################################################
+
+                 MODULE 4
+
+#######################################################
+#######################################################
+-->
+
+<section id="extending-io"><h3>Module 4</h3>
+<h4>Extending your I/O</h4>	
+<p>in which three pins will control 16 LEDs!</p>
+<p>[gif: larson scanner mit 16 LEDs]</p>	
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+<p><div class="component">
+<div style="width: 200px"><img src="lib/usb_cable.png"></div>
+<div style="width: 200px"><img src="lib/tinymega_goff_boff.png"></div>
+<div style="width: 200px"><img src="lib/breadboard.png"></div><br/>
+<div style="width: 200px"><img src="lib/jumper_wire.png"><br/>several</div>
+<div style="width: 200px"><img src="lib/led_red.png"><br/>5x</div>
+<div style="width: 200px"><img src="lib/resistor.png"><br/>5x</div>
+<div style="width: 200px"><img src="lib/DIP16.png"><br/>2x</div>
+</div></p>
+</section>
+
+
+<section><h3>What's a shift register?</h3>
+<ul>
+	<li>Converts serial data to parallel data or vice versa</li>
+	<li>Data is shifted in/out bit by bit
+		<ul>
+			<li>A clock signal triggers a single shift</li>
+		</ul>
+	</li>
+	<li>Our device: Serial in, parallel out (SIPO)</li>
+	<li>Latched: Outputs kept static while new data shifted in
+		<ul>
+			<li>Latch signal changes all outputs at once</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>How do I use a SIPO shift reg?</h3>
+<pre><code>for (i = 0 .. number of bits) {
+	set data input pin to next bit
+		(starting with outermost bit)
+	pulse clock pin
+}
+pulse latch pin</code>
+</pre>
+</section>
+
+
+<section><h3>Daisy Chaining</h3>
+<ul>
+	<li>A shift reg usually also has a serial output pin</li>
+	<li>Can be used as input for another shift reg</li>
+	<li>Clock and latch pins can be tied together</li>
+	<li>Infinite shift register! \o/</li>
+</ul>
+</section>
+
+
+
+<section><h3>SN74HC595</h3>
+<ul>
+	<li>Part of the <a href="https://en.wikipedia.org/wiki/74_series">74xxx series</a> of standard logic
+		<ul>
+			<li><a href="https://en.wikipedia.org/wiki/List_of_7400_series_integrated_circuits">Lots and lots and lots</a> of parts available</li>
+			<li>From every vendor</li>
+		</ul>
+	</li>
+	<li>VV74SSNNN
+		<ul>
+			<li>VV - Vendor, e.g. SN for Texas Instruments</li>
+			<li>SS - Series, e.g. HC for High-Speed CMOS</li>
+			<li>NNN - Device ID, 595 is latched SIPO</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+
+<section><h3>Circuit building</h3>
+<ul>
+	<li>Put the two 74HC595 onto the breadboard
+		<ul>
+			<li>Connect their VDD and GND pins</li>
+			<li>Tie both <span class="overbar">MR</span> pins to VDD</li>
+			<li>Connect DS of the first to a TinyMega pin</li>
+			<li>Connect DS of the second to Q7S of the first</li>
+			<li>Connect both SHCP pins to a second TinyMega pin</li>
+			<li>Connect both STCP pins to a third TinyMega pin</li>
+		</ul>
+	</li>
+	<li>Now place LEDs and resistors</li>
+</ul>
+</section>
+
+
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+	<li>Task: Transform the Larson Scanner to use SIPO
+		<ul>
+			<li><pre><code>cp module3.c module4.c</code></pre></li>
+		</ul>
+	</li>
+	<li>Info:
+		<ul>
+			<li>Use a two-byte buffer for the LED states</li>
+			<li>Shift that buffer out to the SIPO</li>
+			<li>Use a simple loop, don't try to be smart</li>
+		</ul>
+	</li>
+	<li>Question:
+		<ul>
+			<li>Do you need delays between bits?</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
 <!--
 #######################################################
 #######################################################
