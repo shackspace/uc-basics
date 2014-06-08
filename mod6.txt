@@ -1,0 +1,78 @@
+Module 6
+
+Knob Control
+
+in which a knob will change everything!
+
+[gif: larson scanner mit 16 LEDs]
+
+
+
+Stuff you will need
+
+[tinymega] [usb-kabel] [notebook]
+[breadboard] {breadboard-strippen]
+[leds] [widerstände] [shiftis]
+[poti]
+
+
+
+Recap: Potentiometer
+
+Variable resistor
+Top contact, bottom contact, wiper
+Value: Resistance betweem top and bottom
+Wiper position divides resistance
+Voltage divider
+	Wiper slides between top / bottom voltage
+
+
+
+Analog to Digital Converter (ADC)
+
+Converts an analog voltage into a digital value
+Single-ended or differential
+Accuracy: up to 10 bits
+GND..AREF -> 0..1023
+Conversion is not instantaneous
+	Interrupt on completion
+	Free-Running mode
+
+
+
+Analog to Digital Converter (ADC)
+
+Clock prescaler creates 50..200 kHz clock
+Demultiplexer selects one of twelve input pins (24.5)
+Manual conversion start or triggered mode (24.3)
+Left-aligned vs. right-aligned mode (24.9.3)
+Internal temperature sensor (24.6)
+
+
+
+ADC for Dummies
+
+Choose ADC input pin to connect to wiper
+Select AVCC as reference voltage
+Use left-adjusted result, only read ADCH
+Choose manual conversion start
+
+
+
+Use ADC input for control
+
+Change timer frequency for Larson Scanner
+Vary between ~3 Hz and 1 kHz
+Use previous conversion result in timer ISR
+	Change timer freq first thing in ISR!
+Then start next conversion
+
+
+
+Now go forth and code!
+
+Task: Use potentiometer to change speed
+      <code>cp module5.c module6.c</code>
+
+Info:
+	
