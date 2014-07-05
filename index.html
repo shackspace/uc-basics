@@ -819,104 +819,136 @@ ISR(TIMER0_COMPA_vect)
 
 
 <section><h3>Add a button!</h3>
-
-Button will usually connect A to B when pressed
-  "Single Pole, Single Throw" - SPST
-  Pole  -> number of "channels"
-  Throw -> number of positions per channel
-
-Idea: Press to connect input pin to VDD
-  But what happens while not pressed?
+<ul>
+  <li>Button will usually connect A to B when pressed
+    <ul>
+      <li>"Single Pole, Single Throw" - SPST</li>
+      <li>Pole  -> number of "channels"</li>
+      <li>Throw -> number of positions per channel</li>
+    </ul>
+  </li>
+  <li>Idea: Press to connect input pin to VDD
+    <ul>
+      <li>But what happens while not pressed?</li>
+    </ul>
+  </li>
+</ul>
 </section>
 
-
-
 <section><h3>High-Z / floating state</h3>
-
-Pins that are not connected anywhere
-  Called "floating"
-  Or High-Z for "high resistance to anywhere"
-
-A floating input will read random values!
-  Collects charge though static and ambient noise
-
-Solution: Remove the High-Z condition
-  by adding a low-Z path.
+<ul>
+        <li>Pins that are not connected anywhere
+          <ul>
+            <li>Called "floating"</li>
+            <li>Or High-Z for "high resistance to anywhere"</li>
+          </ul>
+        </li>
+        <li>A floating input will read random values!
+          <ul><li>Collects charge though static and ambient noise</li></ul>
+        </li>
+        <li>Solution: Remove the High-Z condition
+          <ul><li>by adding a low-Z path.</li></ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Pull-up / Pull-down resistors</h3>
-
-Provide a path from pin to defined voltage (VDD, GND) that's neither a short circuit nor high-Z
-  Typical resistor value: around 10K
-
-Will pull the floating pin up to VDD or down to GND if nothing else connected
-  But can be easily overcome by a short circuit, e.g. a button
-  SC creates negligible current while pushed -- 0.1 mA for 10K
-
-Like a water reservoir
-  Water level is pin voltage
-  Pull-Up is water supply with valve
-  Button is big flush valve
+<ul>
+        <li>Provide a path from pin to defined voltage (VDD, GND) that's neither a short circuit nor high-Z
+          <ul><li>Typical resistor value: around 10K</li></ul>
+        </li>
+        <li>Will pull the floating pin up to VDD or down to GND if nothing else connected
+        <ul>
+          <li>But can be easily overcome by a short circuit, e.g. a button</li>
+          <li>SC creates negligible current while pushed -- 0.1 mA for 10K</li>
+        </ul>
+        </li>
+        <li>Like a water reservoir
+          <ul>
+            <li>Water level is pin voltage</li>
+            <li>Pull-Up is water supply with valve</li>
+            <li>Button is big flush valve</li>
+         </ul>
+        </li>
+</ul>
 </section>
 
 
-
 <section><h3>Full circuit</h3>
-
-Either pull-down with button to VDD or pull-up with button to GND
-  Which one should we use?
-
-Reminder: ATmega pins have optional internal pull-up!
-  So choose pull-up with button to GND
-
-Switch pin to input + pull-up
-  If we read a <em>zero</em>, the button is <em>pressed</em>
+<ul>
+        <li>Either pull-down with button to VDD or pull-up with button to GND
+          <ul><li>Which one should we use?</li></ul>
+        </li>
+        <li>Reminder: ATmega pins have optional internal pull-up!
+          <ul><li>So choose pull-up with button to GND</li></ul>
+        </li>
+        <li>Switch pin to input + pull-up
+          <ul><li>If we read a <em>zero</em>, the button is <em>pressed</em></li></ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Level triggered vs. edge triggered</h3>
-
-We will poll the button in our main loop
-Options:
-  Do something whenever polling returns "pushed"
-    Will do something every iteration
-    "Level triggered"
-  Do something when button goes from "not pushed" to "pushed"
-    Will do something once per button push-release cycle
-    "Edge triggered"
+<ul>
+        <li>We will poll the button in our main loop</li>
+        <li>Options:
+          <ul>
+            <li>Do something whenever polling returns "pushed"
+            <ul>
+              <li>Will do something every iteration</li>
+              <li>"Level triggered"</li>
+            </ul>
+            </li>
+            <li>Do something when button goes from "not pushed" to "pushed"
+            <ul>
+              <li>Will do something once per button push-release cycle</li>
+              <li>"Edge triggered"</li>
+            </ul>
+            </li>
+          </ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Now go forth and code!</h3>
-
-Task: Advance Larson Scanner manually instead of timer
-      <code>cp module5.c module6.c</code>
-
-Info:
-  Don't throw away the timer code, just turn off timer
-  Move main Larson code into own function
-  Poll button in main loop, edge trigger Larson code
-  Remember to switch pin to input + pull-up
-  We have left a trap for you -- if anything's weird, please speak up!
+<ul>
+        <li>Task: Advance Larson Scanner manually instead of timer
+        <ul><li><pre class="inline"><code>cp module5.c module6.c</code></pre></li></ul>
+        </li>
+        <li>Info:
+          <ul>
+            <li>Don't throw away the timer code, just turn off timer</li>
+            <li>Move main Larson code into own function</li>
+            <li>Poll button in main loop, edge trigger Larson code</li>
+            <li>Remember to switch pin to input + pull-up</li>
+            <li>We have left a trap for you -- if anything's weird, please speak up!</li>
+          </ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Button contact "bouncing"</h3>
-
-Buttons have mechanical contacts that are not perfect
-  When pushed, will bounce ever so slightly
-  Causes short on-off-on-off-... sequence
-  Will settle into permanent "on" after a short time
-
-Trap: If polling code is fast enough, it will see this!
-  Will interpret as several very fast pushes
-
-Only a problem with edge triggering
+<ul>
+        <li>Buttons have mechanical contacts that are not perfect
+          <ul>
+            <li>When pushed, will bounce ever so slightly</li>
+            <li>Causes short on-off-on-off-... sequence</li>
+            <li>Will settle into permanent "on" after a short time</li>
+          </ul>
+        </li>
+        <li>Trap: If polling code is fast enough, it will see this!
+          <ul><li>Will interpret as several very fast pushes</li></ul>
+        </li>
+        <li>Only a problem with edge triggering</li>
+</ul>
 
 [Hier kann man aufm Oszi zeigen, wie ein Taster prellt]
 </section>
@@ -924,40 +956,50 @@ Only a problem with edge triggering
 
 
 <section><h3>Debouncing techniques</h3>
-
-Analog filter (lowpass)
-  Will smooth out button signal, needs hardware
-
-Digital filtering
-  Keep history of last N measurements
-  Require all measurements to agree
-
-Slower polling (if possible)
-  Bouncing will disappear in time between polls
-  Easiest solution
+<ul>
+        <li>Analog filter (lowpass)
+          <ul><li>Will smooth out button signal, needs hardware</li></ul>
+        </li>
+        <li>Digital filtering
+          <ul>
+            <li>Keep history of last N measurements</li>
+            <li>Require all measurements to agree</li>
+          </ul>
+        </li>
+        <li>Slower polling (if possible)
+          <ul>
+            <li>Bouncing will disappear in time between polls</li>
+            <li>Easiest solution</li>
+          </ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Now go forth and code!</h3>
-
-Task: Debounce your button
-
-Info:
-  Use the same source file
-  Your choice: digital filter or slower polling
+<ul>
+        <li>Task: Debounce your button</li>
+        <li>Info:
+          <ul>
+            <li>Use the same source file</li>
+            <li>Your choice: digital filter or slower polling</li>
+          </ul>
+        </li>
+</ul>
 </section>
 
 
 
 <section><h3>Further reading</h3>
-
-ATmega has ways of causing interrupts when an input changes
-  Pin Change Interrupt
-    Triggers on any change
-  External Interrupt
-    Trigger on rising edge, falling edge, or low level
-  Check out datasheet chapter 11 for details
+<p>ATmega has ways of causing interrupts when an input changes</p>
+<ul>
+        <li>Pin Change Interrupt</li>
+        <li><ul><li>Triggers on any change</li></ul></li>
+        <li>External Interrupt</li>
+        <li><ul><li>Trigger on rising edge, falling edge, or low level</li></ul></li>
+        <li>Check out datasheet chapter 11 for details</li>
+</ul>
 </section>
 
 
