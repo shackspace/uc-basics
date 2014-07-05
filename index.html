@@ -799,21 +799,16 @@ ISR(TIMER0_COMPA_vect)
 #######################################################
 -->
 
-<section>
-
-Module 6
-
-Button Control
-
-in which we will succumb to force!
+<section id="button-control"><h3>Module 6</h3>
+  <h4>Button Control</h4>
+  <p>in which we will succumb to force!</p>
 
 [gif: larson scanner mit 8 LEDs]
 </section>
 
 
 
-<section>
-Stuff you will need
+<section><h3>Stuff you will need</h3>
 
 [tinymega] [usb-kabel] [notebook]
 [breadboard] {breadboard-strippen]
@@ -823,8 +818,7 @@ Stuff you will need
 
 
 
-<section>
-Add a button!
+<section><h3>Add a button!</h3>
 
 Button will usually connect A to B when pressed
   "Single Pole, Single Throw" - SPST
@@ -837,8 +831,7 @@ Idea: Press to connect input pin to VDD
 
 
 
-<section>
-High-Z / floating state
+<section><h3>High-Z / floating state</h3>
 
 Pins that are not connected anywhere
   Called "floating"
@@ -853,8 +846,7 @@ Solution: Remove the High-Z condition
 
 
 
-<section>
-Pull-up / Pull-down resistors
+<section><h3>Pull-up / Pull-down resistors</h3>
 
 Provide a path from pin to defined voltage (VDD, GND) that's neither a short circuit nor high-Z
   Typical resistor value: around 10K
@@ -871,8 +863,7 @@ Like a water reservoir
 
 
 
-<section>
-Full circuit
+<section><h3>Full circuit</h3>
 
 Either pull-down with button to VDD or pull-up with button to GND
   Which one should we use?
@@ -886,8 +877,7 @@ Switch pin to input + pull-up
 
 
 
-<section>
-Level triggered vs. edge triggered
+<section><h3>Level triggered vs. edge triggered</h3>
 
 We will poll the button in our main loop
 Options:
@@ -901,8 +891,7 @@ Options:
 
 
 
-<section>
-Now go forth and code!
+<section><h3>Now go forth and code!</h3>
 
 Task: Advance Larson Scanner manually instead of timer
       <code>cp module5.c module6.c</code>
@@ -917,8 +906,7 @@ Info:
 
 
 
-<section>
-Button contact "bouncing"
+<section><h3>Button contact "bouncing"</h3>
 
 Buttons have mechanical contacts that are not perfect
   When pushed, will bounce ever so slightly
@@ -935,8 +923,7 @@ Only a problem with edge triggering
 
 
 
-<section>
-Debouncing techniques
+<section><h3>Debouncing techniques</h3>
 
 Analog filter (lowpass)
   Will smooth out button signal, needs hardware
@@ -952,8 +939,7 @@ Slower polling (if possible)
 
 
 
-<section>
-Now go forth and code!
+<section><h3>Now go forth and code!</h3>
 
 Task: Debounce your button
 
@@ -964,8 +950,7 @@ Info:
 
 
 
-<section>
-Further reading
+<section><h3>Further reading</h3>
 
 ATmega has ways of causing interrupts when an input changes
   Pin Change Interrupt
