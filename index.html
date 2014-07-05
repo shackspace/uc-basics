@@ -799,6 +799,184 @@ ISR(TIMER0_COMPA_vect)
 #######################################################
 -->
 
+<section>
+
+Module 6
+
+Button Control
+
+in which we will succumb to force!
+
+[gif: larson scanner mit 8 LEDs]
+</section>
+
+
+
+<section>
+Stuff you will need
+
+[tinymega] [usb-kabel] [notebook]
+[breadboard] {breadboard-strippen]
+[leds] [widerstände] [shiftis]
+[button]
+</section>
+
+
+
+<section>
+Add a button!
+
+Button will usually connect A to B when pressed
+  "Single Pole, Single Throw" - SPST
+  Pole  -> number of "channels"
+  Throw -> number of positions per channel
+
+Idea: Press to connect input pin to VDD
+  But what happens while not pressed?
+</section>
+
+
+
+<section>
+High-Z / floating state
+
+Pins that are not connected anywhere
+  Called "floating"
+  Or High-Z for "high resistance to anywhere"
+
+A floating input will read random values!
+  Collects charge though static and ambient noise
+
+Solution: Remove the High-Z condition
+  by adding a low-Z path.
+</section>
+
+
+
+<section>
+Pull-up / Pull-down resistors
+
+Provide a path from pin to defined voltage (VDD, GND) that's neither a short circuit nor high-Z
+  Typical resistor value: around 10K
+
+Will pull the floating pin up to VDD or down to GND if nothing else connected
+  But can be easily overcome by a short circuit, e.g. a button
+  SC creates negligible current while pushed -- 0.1 mA for 10K
+
+Like a water reservoir
+  Water level is pin voltage
+  Pull-Up is water supply with valve
+  Button is big flush valve
+</section>
+
+
+
+<section>
+Full circuit
+
+Either pull-down with button to VDD or pull-up with button to GND
+  Which one should we use?
+
+Reminder: ATmega pins have optional internal pull-up!
+  So choose pull-up with button to GND
+
+Switch pin to input + pull-up
+  If we read a <em>zero</em>, the button is <em>pressed</em>
+</section>
+
+
+
+<section>
+Level triggered vs. edge triggered
+
+We will poll the button in our main loop
+Options:
+  Do something whenever polling returns "pushed"
+    Will do something every iteration
+    "Level triggered"
+  Do something when button goes from "not pushed" to "pushed"
+    Will do something once per button push-release cycle
+    "Edge triggered"
+</section>
+
+
+
+<section>
+Now go forth and code!
+
+Task: Advance Larson Scanner manually instead of timer
+      <code>cp module5.c module6.c</code>
+
+Info:
+  Don't throw away the timer code, just turn off timer
+  Move main Larson code into own function
+  Poll button in main loop, edge trigger Larson code
+  Remember to switch pin to input + pull-up
+  We have left a trap for you -- if anything's weird, please speak up!
+</section>
+
+
+
+<section>
+Button contact "bouncing"
+
+Buttons have mechanical contacts that are not perfect
+  When pushed, will bounce ever so slightly
+  Causes short on-off-on-off-... sequence
+  Will settle into permanent "on" after a short time
+
+Trap: If polling code is fast enough, it will see this!
+  Will interpret as several very fast pushes
+
+Only a problem with edge triggering
+
+[Hier kann man aufm Oszi zeigen, wie ein Taster prellt]
+</section>
+
+
+
+<section>
+Debouncing techniques
+
+Analog filter (lowpass)
+  Will smooth out button signal, needs hardware
+
+Digital filtering
+  Keep history of last N measurements
+  Require all measurements to agree
+
+Slower polling (if possible)
+  Bouncing will disappear in time between polls
+  Easiest solution
+</section>
+
+
+
+<section>
+Now go forth and code!
+
+Task: Debounce your button
+
+Info:
+  Use the same source file
+  Your choice: digital filter or slower polling
+</section>
+
+
+
+<section>
+Further reading
+
+ATmega has ways of causing interrupts when an input changes
+  Pin Change Interrupt
+    Triggers on any change
+  External Interrupt
+    Trigger on rising edge, falling edge, or low level
+  Check out datasheet chapter 11 for details
+</section>
+
+
+
 <!--
 #######################################################
 #######################################################
