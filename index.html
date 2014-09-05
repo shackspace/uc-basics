@@ -24,7 +24,6 @@
     <li><a href="#/button-control">Module 4: Button Control</a></li>
     <li><a href="#/extending-io">Module 5: Extending your I/O</a></li>
     <li><a href="#/spi">Module 6: SPI - HW Serial Data</a></li>
-    <li><a href="#/digital-dimming">Module 7: Dimming Stuff Digitally</a></li>
     <li><a href="#/wrapping-up">Wrapping Up</a></li>
     <li><a href="#/meta">Meta Information</a></li>
   </ul>
@@ -131,6 +130,11 @@ R.I.P., my friend
 
 <section><h3>Typical block diagram</h3>
 <img src="lib/uc_components.svg">
+<ul><li><table>
+<tr><td>R</td><td>-</td><td>RAM</td></tr>
+<tr><td>F</td><td>-</td><td>Program Flash</td></tr>
+<tr><td>P</td><td>-</td><td>Craploads of Peripherals</td></tr>
+</table></li><ul>
 </section>
 
 
@@ -154,7 +158,6 @@ R.I.P., my friend
   <li class="fragment">Button Control</li>
   <li class="fragment">Extending your I/O</li>
   <li class="fragment">SPI - HW serial data</li>
-  <li class="fragment">(optional) Dimming stuff digitally</li>
 </ol>
 </section>
 
@@ -283,11 +286,11 @@ R.I.P., my friend
 <pre><code data-trim>#include &lt;avr/io.h&gt;
 
 {
-	// After reset, all pins default to input, no pull-up
-	PORTB = (1 << PB3);		// Enable pull-up on B3
-	DDRB = (1 << PB2);		// Set B2 to output, all others to input
-	if (!(PINB & _BV(PB3)))		// If something pulls B3 down...
-		PORTB |= _BV(PB2);	// Set B2 to high, keep rest as is
+    // After reset, all pins default to input, no pull-up
+    PORTB = (1 << PB3);       // Enable pull-up on B3
+    DDRB = (1 << PB2);        // Set B2 to output, all others to input
+    if (!(PINB & _BV(PB3)))   // If something pulls B3 down...
+        PORTB |= _BV(PB2);    // Set B2 to high, keep rest as is
 }</code></pre>
 </section>
 
@@ -297,8 +300,8 @@ R.I.P., my friend
 #include &lt;util/delay.h&gt;
 
 {
-	_delay_ms(1000);  // waaaait a sec...
-	_delay_us(10);    // and a bit more
+    _delay_ms(1000);  // waaaait a sec...
+    _delay_us(10);    // and a bit more
 }</code></pre>
 </section>
 
@@ -328,10 +331,10 @@ Create a file <code>module1.c</code>:
 
 int main(void)
 {
-	// Setup code goes here
-	while (1) {
-		// Main loop goes here
-	}
+    // Setup code goes here
+    while (1) {
+        // Main loop goes here
+    }
 }</code></pre>
 </section>
 
@@ -454,7 +457,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 
 <section><h3>Problems with the previous solution</h3>
 <ul>
-  <li>Hogs CPU cycles ("busy waiting")</li>
+  <li>Hogs CPU cycles ("busy waiting" or "polling")</li>
   <li>Burns power: CPU constantly busy</li>
   <li>Adding work will make accurate timing difficult/impossible</li>
 </ul>
@@ -505,7 +508,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 
 ISR(TIMER0_COMPA_vect)
 {
-	// Code goes here
+    // Code goes here
 }</code></pre>
 </section>
 
@@ -613,14 +616,14 @@ ISR(TIMER0_COMPA_vect)
 <pre><code data-trim>#include &lt;avr/io.h&gt;
 
 {
-	TCCR1A = 0;
-	TCCR1C = 0;
-	TCNT1  = 0;
-	OCR1A  = 7812;
-	TIMSK1 = 1 << OCIE1A;
-	TIFR1  = 0xFF;
-	// Set TCCR1B last because setting CS starts the T/C
-	TCCR1B = (1 << WGM12) | (5 << CS10);
+    TCCR1A = 0;
+    TCCR1C = 0;
+    TCNT1  = 0;
+    OCR1A  = 7812;
+    TIMSK1 = 1 << OCIE1A;
+    TIFR1  = 0xFF;
+    // Set TCCR1B last because setting CS starts the T/C
+    TCCR1B = (1 << WGM12) | (5 << CS10);
 }</code></pre>
 </section>
 
@@ -1045,9 +1048,9 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>How do I use a SIPO shift reg?</h3>
 <pre><code>for (i = 0 .. number of bits) {
-	set data input pin to next bit
-		(starting with outermost bit)
-	pulse clock pin
+    set data input pin to next bit
+        (starting with outermost bit)
+    pulse clock pin
 }
 pulse latch pin</code>
 </pre>
@@ -1090,18 +1093,24 @@ pulse latch pin</code>
 	<li>Get the datasheet (<a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">bit.ly/UdZpfR</a>, PDF)
 	<li>Put the two 74HC595 onto the breadboard
 		<ul>
-			<li>Connect their VDD and GND pins</li>
-			<li>Tie both <span class="overbar">MR</span> pins to VDD</li>
-			<li>Connect DS of the first to a TinyMega pin</li>
-			<li>Connect DS of the second to Q7S of the first</li>
-			<li>Connect both SHCP pins to a second TinyMega pin</li>
-			<li>Connect both STCP pins to a third TinyMega pin</li>
+			<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
+			<li>First DS to TinyMega, second DS to first Q7S</li>
+			<li>Both CLK to one TinyMega pin, both LATCH to another</li>
 		</ul>
 	</li>
 	<li>Now place LEDs and resistors</li>
 </ul>
 </section>
 
+
+<section><h3>Circuit Cheat Sheet</h3>
+<ul>
+	<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
+	<li>First DS to TinyMega, second DS to first Q7S</li>
+	<li>Both CLK to one TinyMega pin, both LATCH to another</li>
+	<li><img src="lib/doubleshiftlarson.svg" width="70%"></li>
+</ul>
+</section>
 
 
 <section><h3>Now go forth and code!</h3>
@@ -1324,6 +1333,20 @@ pulse latch pin</code>
 	</ul>
 	</li>
 </ul>
+</section>
+
+<!--
+#######################################################
+#######################################################
+
+                 WRAPPING UP
+
+#######################################################
+#######################################################
+-->
+
+<section id="wrapping-up"><h3>Wrapping Up: What we touched today</h3>
+<img src="lib/atmel_components_used.svg">
 </section>
 
 <!--
