@@ -25,28 +25,35 @@
             this.larson_running = false;
         }
 
-        function cwrap(fn,p) {
-            return function() { fn(p); }    
+        function kinkywrap(fn, context) {
+            /* kinkywrap(fn, context)
+             * preserve context across setTimeout invocations.
+             *
+             * it makes me feel dirty to have to use this.
+             * but it's awesome that it works.
+             * so lets call it kinky for the time being. 
+             */
+            return function() { fn.call(context); }    
         }
 
-        this.larson_advance_bkw = function(p) {
-            $(p).find('ul').append( $(p).find('ul>li:first').remove() );
-            if(p.larson_running) {
-                setTimeout( --p.cnt  ? cwrap(p.larson_advance_bkw, p)
-                                     : cwrap(p.larson_advance_fwd, p),
-                            p.timeout);
+        this.larson_advance_bkw = function() {
+            $(this).find('ul').append( $(this).find('ul>li:first').remove() );
+            if(this.larson_running) {
+                setTimeout( --this.cnt  ? kinkywrap(this.larson_advance_bkw, this)
+                                        : kinkywrap(this.larson_advance_fwd, this),
+                            this.timeout);
             }
-            p.cnt = p.cnt ? p.cnt : p.rst-1;
+            this.cnt = this.cnt ? this.cnt : this.rst-1;
         }
 
-        this.larson_advance_fwd = function(p) {
-            $(p).find('ul').prepend( $(p).find('ul>li:last').remove() );
-            if(p.larson_running) {
-                setTimeout( --p.cnt  ? cwrap(p.larson_advance_fwd, p)
-                                     : cwrap(p.larson_advance_bkw, p),
-                            p.timeout);
+        this.larson_advance_fwd = function() {
+            $(this).find('ul').prepend( $(this).find('ul>li:last').remove() );
+            if(this.larson_running) {
+                setTimeout( --this.cnt  ? kinkywrap(this.larson_advance_fwd, this)
+                                        : kinkywrap(this.larson_advance_bkw, this),
+                            this.timeout);
             }
-            p.cnt = p.cnt ? p.cnt : p.rst-1;
+            this.cnt = this.cnt ? this.cnt : this.rst-1;
         }
 
         switch(param){
