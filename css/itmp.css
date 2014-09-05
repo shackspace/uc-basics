@@ -3,6 +3,10 @@
 	list-style-type: none;
 }
 
+.reveal ol.alpha {
+	list-style-type: lower-alpha;
+}
+
 .reveal li {
   padding-top: 0.3em;
 }
