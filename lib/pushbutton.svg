@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="52"
-   height="65.101234"
+   width="54.125"
+   height="67.221939"
    id="svg15108"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="39.051835"
-     inkscape:cy="15.840617"
+     inkscape:zoom="5.6"
+     inkscape:cx="22.516274"
+     inkscape:cy="26.408415"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,10 +35,10 @@
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1" />
   <metadata
      id="metadata15113">
     <rdf:RDF>
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,7 +55,15 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-349,-499.80937)">
+     transform="translate(-347.9375,-498.74681)">
+    <rect
+       style="fill:#ffffff;fill-opacity:0.26666667;stroke:none"
+       id="rect18282"
+       width="49.750011"
+       height="49.497475"
+       x="1.2626907"
+       y="7.7750773"
+       transform="translate(349,499.80937)" />
     <path
        style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.01;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
        d="m 364.5625,499.8125 a 2.50025,2.50025 0 0 0 -2.21875,2.5625 l 0,4 -12.34375,0 -1,0 0,1 0,50 0,1 1,0 12.34375,0 0,4 a 2.50025,2.50025 0 1 0 5,0 l 0,-4 15,0 0,4 a 2.50025,2.50025 0 1 0 5,0 l 0,-4 12.65625,0 1,0 0,-1 0,-50 0,-1 -1,0 -12.65625,0 0,-4 a 2.50025,2.50025 0 0 0 -2.53125,-2.5625 2.50025,2.50025 0 0 0 -0.25,0 2.50025,2.50025 0 0 0 -2.21875,2.5625 l 0,4 -15,0 0,-4 a 2.50025,2.50025 0 0 0 -2.53125,-2.5625 2.50025,2.50025 0 0 0 -0.25,0 z M 351,508.375 l 48,0 0,48 -48,0 0,-48 z"
