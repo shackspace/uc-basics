@@ -1048,9 +1048,9 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>How do I use a SIPO shift reg?</h3>
 <pre><code>for (i = 0 .. number of bits) {
-	set data input pin to next bit
-		(starting with outermost bit)
-	pulse clock pin
+    set data input pin to next bit
+        (starting with outermost bit)
+    pulse clock pin
 }
 pulse latch pin</code>
 </pre>
@@ -1093,18 +1093,24 @@ pulse latch pin</code>
 	<li>Get the datasheet (<a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">bit.ly/UdZpfR</a>, PDF)
 	<li>Put the two 74HC595 onto the breadboard
 		<ul>
-			<li>Connect their VDD and GND pins</li>
-			<li>Tie both <span class="overbar">MR</span> pins to VDD</li>
-			<li>Connect DS of the first to a TinyMega pin</li>
-			<li>Connect DS of the second to Q7S of the first</li>
-			<li>Connect both SHCP pins to a second TinyMega pin</li>
-			<li>Connect both STCP pins to a third TinyMega pin</li>
+			<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
+			<li>First DS to TinyMega, second DS to first Q7S</li>
+			<li>Both CLK to one TinyMega pin, both LATCH to another</li>
 		</ul>
 	</li>
 	<li>Now place LEDs and resistors</li>
 </ul>
 </section>
 
+
+<section><h3>Circuit Cheat Sheet</h3>
+<ul>
+	<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
+	<li>First DS to TinyMega, second DS to first Q7S</li>
+	<li>Both CLK to one TinyMega pin, both LATCH to another</li>
+	<li><img src="lib/doubleshiftlarson.svg" width="70%"></li>
+</ul>
+</section>
 
 
 <section><h3>Now go forth and code!</h3>
