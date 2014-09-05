@@ -50,7 +50,7 @@
 
 .reveal section div.component div {
 	display: inline-block;
-	color: black;
+    color: white;
 }
 
 .reveal * .inline {
@@ -59,7 +59,6 @@
 
 .reveal * div.component {
 	padding: 5px;
-	background-color: #aaa;
 	display: inline-block;
 }
 .reveal section img {
