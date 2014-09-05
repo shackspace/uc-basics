@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -132,115 +132,117 @@
        id="path5970"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccccccccccccc" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="287.61719"
-       y="486.66882"
-       id="text6084"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6086"
-         x="287.61719"
-         y="486.66882">I/O</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text6088"
-       y="486.66882"
-       x="447.61719"
+    <g
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-opacity:1;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
+       id="text6084">
+      <path
+         d="m 307.16797,486.66882 -15.15625,0 0,-2.40234 5.76172,-0.39063 0,-22.96875 -5.76172,-0.39062 0,-2.40234 15.15625,0 0,2.40234 -5.74219,0.39062 0,22.96875 5.74219,0.39063 0,2.40234"
+         style=""
+         id="path6118" />
+      <path
+         d="m 331.44531,458.11414 -12.24609,28.55468 -3.47656,0 12.24609,-28.55468 3.47656,0"
+         style=""
+         id="path6120" />
+      <path
+         d="m 347.61719,487.05945 c -6.92709,0 -10.39063,-4.91536 -10.39063,-14.7461 0,-9.7656 3.47656,-14.6484 10.42969,-14.64843 3.33332,3e-5 5.8854,1.27607 7.65625,3.82812 1.78383,2.53909 2.67576,6.15888 2.67578,10.85938 -2e-5,4.70053 -0.89846,8.32683 -2.69531,10.8789 -1.79689,2.55209 -4.35549,3.82813 -7.67578,3.82813 m 0,-3.1836 c 2.25259,10e-6 3.89972,-0.944 4.9414,-2.83203 1.05467,-1.88801 1.58202,-4.78514 1.58203,-8.6914 -1e-5,-3.9453 -0.53387,-6.84243 -1.60156,-8.69141 -1.0547,-1.86195 -2.6823,-2.79294 -4.88281,-2.79297 -4.38803,3e-5 -6.58204,3.82815 -6.58203,11.48438 -1e-5,7.6823 2.18098,11.52344 6.54297,11.52343"
+         style=""
+         id="path6122" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       xml:space="preserve"><tspan
-         y="486.66882"
-         x="447.61719"
-         id="tspan6090"
-         sodipodi:role="line">I/O</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6088">
+      <path
+         d="m 467.16797,486.66882 -15.15625,0 0,-2.40234 5.76172,-0.39063 0,-22.96875 -5.76172,-0.39062 0,-2.40234 15.15625,0 0,2.40234 -5.74219,0.39062 0,22.96875 5.74219,0.39063 0,2.40234"
+         style=""
+         id="path6111" />
+      <path
+         d="m 491.44531,458.11414 -12.24609,28.55468 -3.47656,0 12.24609,-28.55468 3.47656,0"
+         style=""
+         id="path6113" />
+      <path
+         d="m 507.61719,487.05945 c -6.92709,0 -10.39063,-4.91536 -10.39063,-14.7461 0,-9.7656 3.47656,-14.6484 10.42969,-14.64843 3.33332,3e-5 5.8854,1.27607 7.65625,3.82812 1.78383,2.53909 2.67576,6.15888 2.67578,10.85938 -2e-5,4.70053 -0.89846,8.32683 -2.69531,10.8789 -1.79689,2.55209 -4.35549,3.82813 -7.67578,3.82813 m 0,-3.1836 c 2.25259,10e-6 3.89972,-0.944 4.9414,-2.83203 1.05467,-1.88801 1.58202,-4.78514 1.58203,-8.6914 -10e-6,-3.9453 -0.53387,-6.84243 -1.60156,-8.69141 -1.0547,-1.86195 -2.6823,-2.79294 -4.88281,-2.79297 -4.38803,3e-5 -6.58204,3.82815 -6.58203,11.48438 -1e-5,7.6823 2.18098,11.52344 6.54297,11.52343"
+         style=""
+         id="path6115" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="607.61719"
-       y="486.66882"
-       id="text6092"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6094"
-         x="607.61719"
-         y="486.66882">I/O</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6092">
+      <path
+         d="m 627.16797,486.66882 -15.15625,0 0,-2.40234 5.76172,-0.39063 0,-22.96875 -5.76172,-0.39062 0,-2.40234 15.15625,0 0,2.40234 -5.74219,0.39062 0,22.96875 5.74219,0.39063 0,2.40234"
+         style=""
+         id="path6104" />
+      <path
+         d="m 651.44531,458.11414 -12.24609,28.55468 -3.47656,0 12.24609,-28.55468 3.47656,0"
+         style=""
+         id="path6106" />
+      <path
+         d="m 667.61719,487.05945 c -6.92709,0 -10.39063,-4.91536 -10.39063,-14.7461 0,-9.7656 3.47656,-14.6484 10.42969,-14.64843 3.33332,3e-5 5.8854,1.27607 7.65625,3.82812 1.78383,2.53909 2.67576,6.15888 2.67578,10.85938 -2e-5,4.70053 -0.89846,8.32683 -2.69531,10.8789 -1.79689,2.55209 -4.35549,3.82813 -7.67578,3.82813 m 0,-3.1836 c 2.25259,10e-6 3.89972,-0.944 4.9414,-2.83203 1.05467,-1.88801 1.58202,-4.78514 1.58203,-8.6914 -10e-6,-3.9453 -0.53387,-6.84243 -1.60156,-8.69141 -1.0547,-1.86195 -2.6823,-2.79294 -4.88281,-2.79297 -4.38803,3e-5 -6.58204,3.82815 -6.58203,11.48438 -10e-6,7.6823 2.18098,11.52344 6.54297,11.52343"
+         style=""
+         id="path6108" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="88.974609"
-       y="546.64929"
-       id="text6096"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6098"
-         x="88.974609"
-         y="546.64929">CPU</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6096">
+      <path
+         d="m 110.92773,542.72351 0,3.16406 c -1.90106,0.76823 -4.23178,1.15235 -6.99218,1.15235 -4.023452,0 -7.102876,-1.27604 -9.238284,-3.82813 -2.135421,-2.55208 -3.203128,-6.17837 -3.203125,-10.8789 -3e-6,-4.50519 1.165361,-8.0729 3.496093,-10.70313 2.330721,-2.63018 5.514316,-3.94528 9.550786,-3.94531 2.86456,3e-5 5.35805,0.55992 7.48046,1.67969 l -1.52343,3.04687 c -2.00523,-1.0156 -3.99091,-1.52341 -5.95703,-1.52344 -2.7995,3e-5 -5.032567,1.03518 -6.699223,3.10547 -1.666674,2.05731 -2.500006,4.85028 -2.5,8.37891 -6e-6,3.73699 0.781243,6.58855 2.34375,8.55469 1.56249,1.95312 3.847643,2.92969 6.855473,2.92968 1.69269,10e-6 3.82159,-0.3776 6.38671,-1.13281"
+         style=""
+         id="path6125" />
+      <path
+         d="m 120.0293,535.53601 0,11.11328 -3.63282,0 0,-28.55469 7.89063,0 c 6.69269,3e-5 10.03904,2.78649 10.03906,8.35938 -2e-5,2.85158 -0.90497,5.07814 -2.71484,6.67969 -1.79689,1.60157 -4.41408,2.40235 -7.85156,2.40234 l -3.73047,0 m 0,-3.08594 3.32031,0 c 2.57811,2e-5 4.42056,-0.46873 5.52734,-1.40625 1.11978,-0.93748 1.67967,-2.40232 1.67969,-4.39453 -2e-5,-3.63279 -2.20054,-5.44919 -6.60156,-5.44922 l -3.92578,0 0,11.25"
+         style=""
+         id="path6127" />
+      <path
+         d="m 158.50586,518.05554 0,18.51563 c -2e-5,3.38542 -0.82033,5.97656 -2.46094,7.77343 -1.64064,1.79688 -4.04949,2.69532 -7.22656,2.69532 -6.28907,0 -9.4336,-3.51562 -9.43359,-10.54688 l 0,-18.39844 3.63281,0 0,18.20313 c -1e-5,5.03907 1.99869,7.5586 5.99609,7.55859 3.84113,10e-6 5.79425,-2.53254 5.85938,-7.59765 l 0,-18.20313 3.63281,0"
+         style=""
+         id="path6129" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="272.48047"
-       y="606.63953"
-       id="text6100"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6102"
-         x="272.48047"
-         y="606.63953">R</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6100">
+      <path
+         d="m 279.76562,594.84265 0,11.79688 -3.65234,0 0,-28.55469 6.97266,0 c 6.77081,3e-5 10.15623,2.70185 10.15625,8.10547 -2e-5,3.73699 -1.88153,6.28907 -5.64453,7.65625 l 7.7539,12.79297 -4.27734,0 -6.83594,-11.79688 -4.47266,0 m 0,-3.08594 3.20313,0 c 2.22655,2e-5 3.86717,-0.42967 4.92187,-1.28906 1.05468,-0.85936 1.58202,-2.22654 1.58204,-4.10156 -2e-5,-1.83592 -0.52085,-3.15753 -1.5625,-3.96484 -1.04168,-0.80727 -2.72137,-1.21092 -5.03907,-1.21094 l -3.10547,0 0,10.5664"
+         style=""
+         id="path6086" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="352.59766"
-       y="606.63953"
-       id="text6104"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6106"
-         x="352.59766"
-         y="606.63953">F</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text6108"
-       y="606.63953"
-       x="432.59766"
+       id="text6104">
+      <path
+         d="m 360.99609,606.63953 -3.63281,0 0,-28.55469 16.42578,0 0,3.20312 -12.79297,0 0,10.07813 12.05078,0 0,3.20312 -12.05078,0 0,12.07032"
+         style=""
+         id="path6089" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       xml:space="preserve"><tspan
-         y="606.63953"
-         x="432.59766"
-         id="tspan6110"
-         sodipodi:role="line">P</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6108">
+      <path
+         d="m 439.66797,595.52625 0,11.11328 -3.63281,0 0,-28.55469 7.89062,0 c 6.69269,3e-5 10.03904,2.78648 10.03906,8.35937 -2e-5,2.85158 -0.90496,5.07814 -2.71484,6.67969 -1.79689,1.60158 -4.41408,2.40236 -7.85156,2.40235 l -3.73047,0 m 0,-3.08594 3.32031,0 c 2.57811,1e-5 4.42056,-0.46874 5.52734,-1.40625 1.11978,-0.93749 1.67967,-2.40233 1.67969,-4.39453 -2e-5,-3.63279 -2.20053,-5.4492 -6.60156,-5.44922 l -3.92578,0 0,11.25"
+         style=""
+         id="path6092" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="512.59766"
-       y="606.63953"
-       id="text6112"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6114"
-         x="512.59766"
-         y="606.63953">P</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text6116"
-       y="606.63953"
-       x="592.59766"
+       id="text6112">
+      <path
+         d="m 519.66797,595.52625 0,11.11328 -3.63281,0 0,-28.55469 7.89062,0 c 6.69269,3e-5 10.03904,2.78648 10.03906,8.35937 -2e-5,2.85158 -0.90496,5.07814 -2.71484,6.67969 -1.79689,1.60158 -4.41408,2.40236 -7.85156,2.40235 l -3.73047,0 m 0,-3.08594 3.32031,0 c 2.57811,1e-5 4.42056,-0.46874 5.52734,-1.40625 1.11978,-0.93749 1.67967,-2.40233 1.67969,-4.39453 -2e-5,-3.63279 -2.20053,-5.4492 -6.60156,-5.44922 l -3.92578,0 0,11.25"
+         style=""
+         id="path6095" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       xml:space="preserve"><tspan
-         y="606.63953"
-         x="592.59766"
-         id="tspan6118"
-         sodipodi:role="line">P</tspan></text>
-    <text
-       xml:space="preserve"
+       id="text6116">
+      <path
+         d="m 599.66797,595.52625 0,11.11328 -3.63281,0 0,-28.55469 7.89062,0 c 6.69269,3e-5 10.03904,2.78648 10.03906,8.35937 -2e-5,2.85158 -0.90496,5.07814 -2.71484,6.67969 -1.79689,1.60158 -4.41408,2.40236 -7.85156,2.40235 l -3.73047,0 m 0,-3.08594 3.32031,0 c 2.57811,1e-5 4.42056,-0.46874 5.52734,-1.40625 1.11978,-0.93749 1.67967,-2.40233 1.67969,-4.39453 -2e-5,-3.63279 -2.20053,-5.4492 -6.60156,-5.44922 l -3.92578,0 0,11.25"
+         style=""
+         id="path6098" />
+    </g>
+    <g
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Droid Sans Mono;-inkscape-font-specification:Droid Sans Mono"
-       x="672.59766"
-       y="606.63953"
-       id="text6120"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan6122"
-         x="672.59766"
-         y="606.63953">P</tspan></text>
+       id="text6120">
+      <path
+         d="m 679.66797,595.52625 0,11.11328 -3.63281,0 0,-28.55469 7.89062,0 c 6.69269,3e-5 10.03904,2.78648 10.03906,8.35937 -2e-5,2.85158 -0.90496,5.07814 -2.71484,6.67969 -1.79689,1.60158 -4.41408,2.40236 -7.85156,2.40235 l -3.73047,0 m 0,-3.08594 3.32031,0 c 2.57811,1e-5 4.42056,-0.46874 5.52734,-1.40625 1.11978,-0.93749 1.67967,-2.40233 1.67969,-4.39453 -2e-5,-3.63279 -2.20053,-5.4492 -6.60156,-5.44922 l -3.92578,0 0,11.25"
+         style=""
+         id="path6101" />
+    </g>
   </g>
 </svg>
