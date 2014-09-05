@@ -210,7 +210,8 @@ R.I.P., my friend
   <li class="fragment" data-fragment-index="2"><img src="lib/dontpanic.png"></li>
   <li class="fragment" data-fragment-index="3">We will guide you to the relevant parts</li>
   <li class="fragment" data-fragment-index="3">General intro to datasheets will follow later</li>
-  <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_%20Datasheet.pdf">bit.ly/1jjFFMb</a> (PDF)</li>
+  <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_%20Datasheet.pdf">bit.ly/1jjFFMb</a> (PDF)<br/>
+  <small>(Note: Hover any shortened link to see where it leads)</small></li>
 <ul>
 </section>
 
@@ -244,19 +245,17 @@ R.I.P., my friend
 
 
 <section><h3>Structure of MCU firmware</h3>
-<p>
-It's a program like any other!
-
 <ul>
-  <li><pre class="inline">main()</pre> function
-    <ul>
-      <li>Initialization code</li>
-      <li>Main loop</li>
-    </ul>
-  </li>
-  <li>Main loop is never exited</li>
+<li>It's a program like any other!</li>
+<li class="fragment"><code>main()</code> function
+  <ul>
+    <li>Initialization code</li>
+    <li>Main loop</li>
+  </ul>
+</li>
+<li class="fragment">Main loop is never exited</li>
+<li class="fragment">avr-libc takes care of the gory stuff</li>
 </ul>
-</p>
 </section>
 
 
@@ -289,11 +288,13 @@ It's a program like any other!
     </ul>
   </li>
   <li class="fragment">Each port has three registers
-    <ul>
-      <li>PORTx -- Write output values or enable/disable pull-up</li>
-      <li>PINx  -- Read input values</li>
-      <li>DDRx  -- Data Direction Register; selects in (0) / out (1) direction per pin</li>
-    </ul>
+	<ul><li>
+	<table>
+	<tr><td>PORTx</td><td>--</td><td>Write output values or enable/disable pull-up</td></tr>
+	<tr><td>PINx</td><td>--</td><td>Read input values</td></tr>
+	<tr><td>DDRx</td><td>--</td><td>Data Direction Register<br/>selects in (0) / out (1) direction per pin</td></tr>
+	</table>
+	</li></ul>
   </li>
 </ul>
 </section>
@@ -372,8 +373,8 @@ int main(void)
   <li>Display the firmware size
     <ul>
       <li><pre class="inline">avr-size module1.elf</pre></li>
-	    <li><pre class="inline">text + data</pre> is Flash usage</li>
-	    <li><pre class="inline">data + bss</pre> is RAM usage</li>
+	    <li><code>text</code> + <code>data</code> is Flash usage</li>
+	    <li><code>data</code> + <code>bss</code> is RAM usage</li>
     </ul>
   </li>
 </ul>
@@ -448,7 +449,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 #######################################################
 #######################################################
 
-              MODULE 1: LEDs and I/O
+              MODULE 2: Interrupts & Timers
 
 #######################################################
 #######################################################
@@ -485,7 +486,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 <ul>
   <li>ATmega32U4 has four Timer/Counter (T/C) modules</li>
   <li>HW counter, counting up at (divided) clock frequency</li>
-  <li class="fragment">Compare registers to trigger actions at certain values</li>
+  <li class="fragment">"Compare registers" to trigger actions at certain values</li>
   <li class="fragment">Can also directly control I/O pins, capture event timestamps, ...</li>
 </ul>
 </section>
@@ -501,10 +502,10 @@ clock_prescale_set(clock_div_1);</code></pre>
     </ul>
   </li>
   <li class="fragment">Can be enabled / disabled globally
-    <ul>
-      <li><pre class="inline">sei()</pre> - SEt Interrupts</li>
-	  <li><pre class="inline">cli()</pre> - CLear Interrupts</li>
-    </ul>
+    <ul><li><table>
+      <tr><td><code>sei()</code></td><td>-</td><td>SEt Interrupts</td></tr>
+	  <tr><td><code>cli()</code></td><td>-</td><td>CLear Interrupts</td></tr>
+    </table></li></ul>
   </li>
 </ul>
 </section>
@@ -577,7 +578,8 @@ ISR(TIMER0_COMPA_vect)
   <li>We want to wait for half a second</li>
   <li class="fragment">Choose slowest prescaler value of CLK/1024
     <ul>
-      <li>15625 ticks per second</li>
+	  <li>How many ticks per second?</li>
+      <li class="fragment">15625 ticks per second</li>
     </ul>
   </li>
 </ul>
@@ -668,10 +670,11 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Tips & Tricks</h3>
 <ul>
-  <li>Toggle a port pin value using XOR:
-    <ul>
-      <li><pre class="inline"><code data-trim>PORTE ^= 1 << PE6;</code></pre>
-    </ul>
+  <li>Toggle a port pin value by writing PINx:
+	<ul>
+		<li><pre class="inline"><code data-trim>PINE = 1 << PE6;</code></pre></li>
+		<li>Little known AVR feature</li>
+	</ul>
   </li>
   <li>Save power by using Sleep Mode in main loop
     <ul>
@@ -751,8 +754,8 @@ ISR(TIMER0_COMPA_vect)
 <ul>
 	<li>I<sub>F</sub> = 20 mA</li>
 	<li>V<sub>F</sub> = 1.8 V</li>
-	<li>&#8658; R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> = 160 &Omega;</li>
-	<li>Pick nearest standard value: 150 &Omega;</li>
+	<li><i class="fa fa-arrow-right"></i> R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> = 160 &Omega;</li>
+	<li>Pick next higher standard value: 180 &Omega;</li>
 </ul>
 </section>
 
@@ -799,7 +802,7 @@ ISR(TIMER0_COMPA_vect)
 #######################################################
 -->
 
-<section id="button-control"><h3>Module 6</h3>
+<section id="button-control"><h3>Module 4</h3>
   <h4>Button Control</h4>
   <p>in which we will succumb to force!</p>
   <p><img src="lib/larson_8.gif"></p>
@@ -826,8 +829,10 @@ ISR(TIMER0_COMPA_vect)
   <li>Button will usually connect A to B when pressed
     <ul>
       <li>"Single Pole, Single Throw" - SPST</li>
-      <li>Pole  <i class="fa fa-arrow-right"></i> number of "channels"</li>
-      <li>Throw <i class="fa fa-arrow-right"></i> number of positions per channel</li>
+	  <li><table>
+		<tr><td>Pole</td><td><i class="fa fa-arrow-right"></i></td><td>number of "channels"</td></tr>
+		<tr><td>Throw</td><td><i class="fa fa-arrow-right"></i></td><td>number of positions per channel</td></tr>
+	  </table></li>
     </ul>
   </li>
   <li>Idea: Press to connect input pin to VDD
@@ -859,16 +864,19 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Pull-up / Pull-down resistors</h3>
 <ul>
-        <li>Provide a path from pin to defined voltage (VDD, GND) that's neither a short circuit nor high-Z
-          <ul><li>Typical resistor value: around 10K</li></ul>
+        <li>Provide a path from pin to defined voltage (VDD, GND)
+		  <ul>
+			<li>Neither a short circuit nor High-Z</li>
+            <li>Typical resistor value: around 10k&Omega;</li>
+		  </ul>
         </li>
-        <li>Will pull the floating pin up to VDD or down to GND if nothing else connected
+        <li class="fragment">Pulls floating pin up to VDD or down to GND
         <ul>
-          <li>But can be easily overcome by a short circuit, e.g. a button</li>
-          <li>SC creates negligible current while pushed -- 0.1 mA for 10K</li>
+          <li>Can be easily overcome by a short circuit, e.g. a button</li>
+          <li>SC creates negligible current while pushed -- 0.5 mA for 10k&Omega;, 5V</li>
         </ul>
         </li>
-        <li>Like a water reservoir
+        <li class="fragment">Like a water reservoir (think flush toilet)
           <ul>
             <li>Water level is pin voltage</li>
             <li>Pull-Up is water supply with valve</li>
@@ -884,10 +892,10 @@ ISR(TIMER0_COMPA_vect)
         <li>Either pull-down with button to VDD or pull-up with button to GND
           <ul><li>Which one should we use?</li></ul>
         </li>
-        <li>Reminder: ATmega pins have optional internal pull-up!
+        <li class="fragment" data-fragment-index="2">Reminder: ATmega pins have optional internal pull-up!
           <ul><li>So choose pull-up with button to GND</li></ul>
         </li>
-        <li>Switch pin to input + pull-up
+        <li class="fragment" data-fragment-index="2">Switch pin to input + pull-up
           <ul><li>If we read a <em>zero</em>, the button is <em>pressed</em></li></ul>
         </li>
 </ul>
@@ -899,7 +907,7 @@ ISR(TIMER0_COMPA_vect)
 <ul>
         <li>We will poll the button in our main loop</li>
         <li>Options:
-          <ul>
+          <ol class="alpha">
             <li>Do something whenever polling returns "pushed"
             <ul>
               <li>Will do something every iteration</li>
@@ -912,7 +920,7 @@ ISR(TIMER0_COMPA_vect)
               <li>"Edge triggered"</li>
             </ul>
             </li>
-          </ul>
+          </ol>
         </li>
 </ul>
 </section>
@@ -953,7 +961,7 @@ ISR(TIMER0_COMPA_vect)
         <li>Only a problem with edge triggering</li>
 </ul>
 
-[Hier kann man aufm Oszi zeigen, wie ein Taster prellt]
+<aside class="notes">Hier kann man aufm Oszi zeigen, wie ein Taster prellt</aside>
 </section>
 
 
@@ -997,10 +1005,10 @@ ISR(TIMER0_COMPA_vect)
 <section><h3>Further reading</h3>
 <p>ATmega has ways of causing interrupts when an input changes</p>
 <ul>
-        <li>Pin Change Interrupt</li>
-        <li><ul><li>Triggers on any change</li></ul></li>
-        <li>External Interrupt</li>
-        <li><ul><li>Trigger on rising edge, falling edge, or low level</li></ul></li>
+        <li>Pin Change Interrupt
+        <ul><li>Triggers on any change</li></ul></li>
+        <li>External Interrupt
+        <ul><li>Trigger on rising edge, falling edge, or low level</li></ul></li>
         <li>Check out datasheet chapter 11 for details</li>
 </ul>
 </section>
