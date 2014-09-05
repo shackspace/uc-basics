@@ -240,11 +240,11 @@ R.I.P., my friend
     <img src="lib/input-range.svg">
 <ul>
   <li>Most I/O pins of the ATmega can be controlled directly as digital I/O
-    <ul>
-      <li>Output mode: Write a zero (GND) or one (supply voltage, VDD)</li>
-      <li>Input mode: Convert pin voltage to one or zero and return<br/>
-          Optional pull-up resistor selectable by software</li>
-    </ul>
+    <ul><li><table>
+	  <tr><td>Output mode:</td><td>Write a zero (GND) or one (supply voltage, VDD)</td></tr>
+	  <tr><td>Input mode:</td><td>Convert pin voltage to one or zero and return<br/>
+          Optional pull-up resistor selectable by software</td></tr>
+    </table></li></ul>
   </li>
   <li class="fragment">Pins are grouped into "ports"
     <ul>
@@ -909,7 +909,7 @@ ISR(TIMER0_COMPA_vect)
 <section><h3>Now go forth and code!</h3>
 <ul>
         <li>Task: Advance Larson Scanner manually instead of timer
-        <ul><li><pre class="inline"><code>cp module5.c module6.c</code></pre></li></ul>
+        <ul><li><pre class="inline"><code>cp module3.c module4.c</code></pre></li></ul>
         </li>
         <li>Info:
           <ul>
@@ -1108,7 +1108,7 @@ pulse latch pin</code>
 <ul>
 	<li>Task: Transform the Larson Scanner to use SIPO
 		<ul>
-			<li><pre><code>cp module3.c module4.c</code></pre></li>
+			<li><pre><code>cp module4.c module5.c</code></pre></li>
 		</ul>
 	</li>
 	<li>Info:
@@ -1121,6 +1121,8 @@ pulse latch pin</code>
 	<li>Question:
 		<ul>
 			<li>Do you need delays between bits?</li>
+			<li class="fragment">t<sub>pd,SHCP..Q7S</sub> = 32 ns; t<sub>W,SHCP</sub> = 6 ns<br/>
+				1 / 40 ns = 25 MHz, so we're safe at 16 MHz</li>
 		</ul>
 	</li>
 </ul>
@@ -1146,7 +1148,6 @@ pulse latch pin</code>
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
 <div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<!--<div style="width: 200px"><img src="lib/tinymega_goff_boff.png"></div>-->
 <div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
 <div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
 <div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
@@ -1184,12 +1185,12 @@ pulse latch pin</code>
 
 
 <section><h3>SPI signals</h3>
-<ul>
-	<li>MOSI - Master Out / Slave In</li>
-	<li>MISO - Master In / Slave Out</li>
-	<li>SCK  - Serial Clock</li>
-	<li>SS   - Slave Select (optional)</li>
-</ul>
+<ul><table>
+	<tr><td>MOSI</td><td>-</td><td>Master Out / Slave In</td></tr>
+	<tr><td>MISO</td><td>-</td><td>Master In / Slave Out</td></tr>
+	<tr><td>SCK </td><td>-</td><td>Serial Clock</td></tr>
+	<tr><td>SS  </td><td>-</td><td>Slave Select (optional)</td></tr>
+</table></ul>
 </section>
 
 
@@ -1298,7 +1299,7 @@ pulse latch pin</code>
 <ul>
 	<li>Task: Transform SIPO code from bit-banging to SPI
 		<ul>
-			<li><pre><code>cp module4.c module5.c</code></pre></li>
+			<li><pre><code>cp module5.c module6.c</code></pre></li>
 		</ul>
 	</li>
 	<li>Info:
@@ -1312,6 +1313,18 @@ pulse latch pin</code>
 </ul>
 </section>
 
+
+<section><h3>Tips & Tricks</h3>
+<ul>
+	<li>Interrupt-driven SPI not very fast =/
+	<ul>
+		<li>Entering + leaving ISR takes 30ish cycles</li>
+		<li>About as long as transmitting a byte!</li>
+		<li>If SPI speed is an issue, consider polling</li>
+	</ul>
+	</li>
+</ul>
+</section>
 
 <!--
 #######################################################
