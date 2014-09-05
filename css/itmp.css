@@ -3,6 +3,9 @@
 	list-style-type: none;
 }
 
+.reveal .slides {
+    text-align: center;    
+}
 .reveal ol.alpha {
 	list-style-type: lower-alpha;
 }
@@ -73,4 +76,14 @@
 
 .reveal .overbar {
 	text-decoration: overline;
+}
+
+div.floatleft img {
+    float: left;
+    height: 300px;
+}
+
+div.floatleft > ul {
+    float: left;
+    width: 80%;
 }
