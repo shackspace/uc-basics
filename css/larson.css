@@ -1,0 +1,14 @@
+div.larson img {
+}
+
+div.larson ul {
+    margin: 0;
+    padding: 0;
+}
+div.larson li {
+    display: inline-block;    
+    margin: 0;
+    padding: 0;
+    margin-right: -15px;
+    list-item-style: none;
+}

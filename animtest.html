@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+<link rel="stylesheet" href="css/larson.css" />
+</head>
+<body>
+    <div class="larson anim1"></div>
+    <div class="larson anim2"></div>
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="js/larson.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $('.anim1').larson(8).larson('start');
+    $('.anim2').larson(16).larson('start');
+});
+</script>
+</body>
+</html>
