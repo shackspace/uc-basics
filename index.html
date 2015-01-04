@@ -244,14 +244,14 @@ R.I.P., my friend
 <section><h3>Structure of MCU firmware</h3>
 <ul>
 <li>It's a program like any other!</li>
-<li class="fragment"><code>main()</code> function
+<li class="fragment"><code>main()</code> function comprised of
   <ul>
     <li>Initialization code</li>
     <li>Main loop</li>
   </ul>
 </li>
-<li class="fragment">Main loop is never exited</li>
 <li class="fragment">avr-libc takes care of the gory stuff</li>
+<li class="fragment"><strong>Caveat:</strong> Never exit the main-loop!</li>
 </ul>
 </section>
 
