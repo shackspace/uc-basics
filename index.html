@@ -393,26 +393,20 @@ int main(void)
 
 
 <section><h3>Build</h3>
-<ul>
-  <li>Compile the source
-	  <ul>
-      <li><pre class="inline">avr-gcc -mmcu=atmega32u4 -DF_CPU=16000000UL \
-        -Os -o module1.elf module1.c</pre></li>
-    </ul>
+<ol>
+  <li>Compile the source<br/>
+      <pre class="inline fragment">avr-gcc -mmcu=atmega32u4 -DF_CPU=16000000UL \
+        -Os -o module1.elf module1.c</pre>
   </li>
-  <li>Generate an Intel HEX file for flashing
-	  <ul>
-      <li><pre class="inline">avr-objcopy -O ihex module1.elf module1.hex</pre></li>
-    </ul>
+  <li>Generate an Intel HEX file for flashing<br/>
+      <pre class="inline fragment">avr-objcopy -O ihex module1.elf module1.hex</pre>
   </li>
-  <li>Display the firmware size
-    <ul>
-      <li><pre class="inline">avr-size module1.elf</pre></li>
-	    <li><code>text</code> + <code>data</code> is Flash usage</li>
-	    <li><code>data</code> + <code>bss</code> is RAM usage</li>
-    </ul>
+  <li>Display the firmware size<br/>
+      <pre class="inline fragment">avr-size module1.elf</pre><br/><br/>
+      <span class="fragment"><code>text</code> + <code>data</code> &rArr; Flash usage<br/>
+	  <code>data</code> + <code>bss</code> &rArr; RAM usage</span>
   </li>
-</ul>
+</ol>
 </section>
 
 
