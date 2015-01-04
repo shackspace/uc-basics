@@ -6,6 +6,20 @@ by [Joachim Fenkes](https://github.com/dop3j0e/) & [Gregor Jehle](https://github
 is licensed under a 
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
+### Image Attribution
+- Samsung Crystal Blue washing machine
+ - CC-BY-NC-SA Gregor Jehle
+ - Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/  
+- Rancilio coffee machine
+ - CC-BY-NC Gregor Jehle
+ - Original: CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/
+- Samsung Stainless Steel microwave oven
+ - CC-BY-NC-SA Gregor Jehle
+ - Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/
+- Atmel ATmega32U4 Block Diagram
+ - Color highlighting: CC-0 Gregor Jehle
+ - Original: &copy; 2014 Atmel Corporation, 2014-05-28 15:00, Atmel-7766G-AVR-ATmega16U4-32U4-Datasheet_02/2014  
+
 # reveal.js
 Copyright (C) 2014 Hakim El Hattab, http://hakim.se
 
@@ -56,16 +70,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Image Attribution
-- Samsung Crystal Blue washing machine
- - CC-BY-NC-SA Gregor Jehle
- - Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/  
-- Rancilio coffee machine
- - CC-BY-NC Gregor Jehle
- - Original: CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/
-- Samsung Stainless Steel microwave oven
- - CC-BY-NC-SA Gregor Jehle
- - Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/
-- Atmel ATmega32U4 Block Diagram
- - Color highlighting: CC-0 Gregor Jehle
- - Original: &copy; 2014 Atmel Corporation, 2014-05-28 15:00, Atmel-7766G-AVR-ATmega16U4-32U4-Datasheet_02/2014  
