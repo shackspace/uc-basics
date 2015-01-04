@@ -26,7 +26,7 @@
 
 .reveal div#staticnav {
 	height: 30px;
-  width: 40px;
+    width: 40px;
 	overflow: hidden;
 	font-size: 50%;
 }
@@ -126,4 +126,12 @@ div.component > div {
 
 #dontpanic {
     width: 50%;
+}
+
+.atmel_components {
+    width: 70%;
+}
+
+#doubleshiftlarson {
+    width: 70%;
 }
