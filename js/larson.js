@@ -9,9 +9,9 @@
 
             $(this).find('ul').remove();
             $(this).append('<ul></ul>');
-            $(this).find('ul').append( '<li><img src="lib/larson_on.svg" alt=""></li>' );
+            $(this).find('ul').append( '<li><img src="lib/larson/on.svg" alt=""></li>' );
             for (i=0; i<this.nled-1; ++i){
-                $(this).find('ul').append( '<li><img src="lib/larson_off.svg" alt=""></li>' );
+                $(this).find('ul').append( '<li><img src="lib/larson/off.svg" alt=""></li>' );
             }
         }
 
