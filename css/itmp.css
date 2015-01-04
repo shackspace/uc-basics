@@ -52,6 +52,7 @@
 
 .reveal section .photowrapper {
   font-size: 50%;
+  line-height: 100%;
   display: inline-block;
 }
 
