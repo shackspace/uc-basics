@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <title>Introduction to Microcontroller Programming</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <script src="js/larson.js" type="text/javascript"></script>
   <link rel="stylesheet" href="css/reveal.min.css">
   <link rel="stylesheet" href="css/theme/default.css" id="theme">
   <link rel="stylesheet" href="lib/css/zenburn.css">
   <link rel="stylesheet" href="lib/font-awesome-4.1.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/itmp.css">
+  <link rel="stylesheet" href="css/larson.css" />
   <!--[if lt IE 9]><script src="lib/js/html5shiv.js"></script><![endif]-->
 </head>
 <body>
@@ -122,9 +125,9 @@ R.I.P., my friend
 
 
 <section><h3>Applications</h3>
-<div style="width: 300px" class="photowrapper"><img src="lib/ranciliocoffeemachine.jpg">CC-BY-NC Faye Yu</div>
-<div style="width: 300px" class="photowrapper"><img src="lib/samsungcrystalblue.jpg">CC-BY-NC-SA Samsung Tomorrow</div>
-<div style="width: 300px" class="photowrapper"><img src="lib/samsungmicrowave.jpg">CC-BY-NC-SA Samsung Tomorrow</div>
+<div class="example_photo photowrapper"><img src="lib/ranciliocoffeemachine.png"><span class="unimportant">CC-BY-NC<br/>Gregor Jehle, Faye Yu</span></div>
+<div class="example_photo photowrapper"><img src="lib/samsungcrystalblue.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
+<div class="example_photo photowrapper"><img src="lib/samsungmicrowave.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
 </section>
 
 
@@ -167,23 +170,23 @@ R.I.P., my friend
 </section>
 
 <section><h3>The ATmega32U4 microcontroller</h3>
-<img src="lib/atmel_components.svg" width="70%">
+<img class="atmel_components" src="lib/atmel_components.svg">
 </section>
 
 
 <section><h3>The TinyMega Board</h3>
-<div style="float:right">
-<ol style="valign:center">
+<div id="board_overview_description">
+<ol>
   <li>The MCU itself</li>
   <li>USB jack</li>
-  <li>Lots of marked I/O pins</li>
-  <li>Two LEDs (Power, User)</li>
+  <li>Lots of labeled I/O pins</li>
+  <li>Two LEDs (Green: Power, Blue: User)</li>
   <li>Two buttons (Reset, Bootloader/User)</li>
 </ol>
 </div>
-<div style="display:block">
-<img src="lib/tinymega-bottom.svg" style="width:30%; height:auto;">
-<img src="lib/tinymega-top.svg" width="30%" style="height:auto;"><br/>
+<div id="board_overview_photos">
+<img src="lib/tinymega-bottom.svg">
+<img src="lib/tinymega-top.svg"><br/>
 </div>
 </section>
 
@@ -192,8 +195,8 @@ R.I.P., my friend
 <ul>
   <li class="fragment" data-fragment-index="1">Most important piece of documentation</li>
   <li class="fragment" data-fragment-index="1">433 pages o.O</li>
-  <li class="fragment" data-fragment-index="2"><img src="lib/dontpanic.png"></li>
-  <li class="fragment" data-fragment-index="3">We will guide you to the relevant parts</li>
+  <li class="fragment" data-fragment-index="2"><img id="dontpanic" src="lib/dontpanic.svg"></li>
+  <li class="fragment" data-fragment-index="3">We will guide you to the relevant sections</li>
   <li class="fragment" data-fragment-index="3">General intro to datasheets will follow later</li>
   <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf">bit.ly/1Ht3JLj</a> (PDF)<br/>
   <small>(Note: Hover any shortened link to see where it leads)</small></li>
@@ -688,18 +691,18 @@ ISR(TIMER0_COMPA_vect)
 <section id="leds-and-io"><h3>Module 3</h3>
 <h4>LEDs & I/O</h4>
 <p>in which we will revive K.I.T.T.!</p>
-<p><div class="component"><img src="lib/larson_8.gif"></div></p>
+<div class="larson anim1"></div>
 </section>
 
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>8x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>8x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>8x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>8x</div>
 </div></p>
 </section>
 
@@ -802,13 +805,13 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div>
-<div style="width: 200px"><img src="lib/pushbutton.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>8x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>8x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div>
+<div><img src="lib/pushbutton.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>8x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>8x</div>
 </div></p>
 </section>
 
@@ -1019,19 +1022,19 @@ ISR(TIMER0_COMPA_vect)
 <section id="extending-io"><h3>Module 5</h3>
 <h4>Extending your I/O</h4>	
 <p>in which three pins will control 16 LEDs!</p>
-<p><div class="component"><img src="lib/larson_16.gif"></div></p>
+<div class="larson anim2"></div>
 </section>
 
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>lots</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/74595_dil.svg"><br/>2x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>16x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>16x</div>
+<div><img src="lib/74595_dil.svg"><br/>2x</div>
 </div></p>
 </section>
 
@@ -1130,7 +1133,7 @@ pulse latch pin</code>
 	<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
 	<li>First DS to TinyMega, second DS to first Q7S</li>
 	<li>Both CLK to one TinyMega pin, both LATCH to another</li>
-	<li><img src="lib/doubleshiftlarson.svg" width="70%"></li>
+	<li><img id="doubleshiftlarson" src="lib/doubleshiftlarson.svg"></li>
 </ul>
 </section>
 
@@ -1172,19 +1175,19 @@ pulse latch pin</code>
 <section id="spi"><h3>Module 6</h3>
 <h4>SPI - HW serial data</h4>
 <p>in which a loop will move into hardware!</p>
-<p><div class="component"><img src="lib/larson_16.gif"></div></p>
+<div class="larson anim3"></div>
 </section>
 
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/74595_dil.svg"><br/>2x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>16x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>16x</div>
+<div><img src="lib/74595_dil.svg"><br/>2x</div>
 </div></p>
 </section>
 
@@ -1368,7 +1371,7 @@ pulse latch pin</code>
 -->
 
 <section id="wrapping-up"><h3>Wrapping Up: What we touched today</h3>
-<img src="lib/atmel_components_used.svg" width="80%">
+<img class="atmel_components" src="lib/atmel_components_used.svg">
 </section>
 
 <!-- not sure if want
@@ -1448,10 +1451,30 @@ pulse latch pin</code>
 <section><h3>Source Attribution</h3>
 <div class="attribution">
 <ul>
-  <li>Samsung Crystal Blue washing machine, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/</li>
-  <li>Rancilio coffee machine, CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/</li>
-  <li>Samsung Stainless Steel microwave oven, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/</li>
-  <li>Atmel ATmega32U4 Block Diagram, &copy; 2014 Atmel Corporation, 2015-05-28 15:00, Atmel-7766G-AVR-ATmega16U4-32U4-Datasheet_02/2014</li>
+  <li>Samsung Crystal Blue washing machine
+  <ul>
+    <li>CC-BY-NC-SA Gregor Jehle</li>
+    <li>Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/</li>
+  </ul>
+  </li>
+  <li>Rancilio coffee machine
+  <ul>
+    <li>CC-BY-NC Gregor Jehle</li>
+    <li>Original: CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/</li>
+  </ul>
+  </li>
+  <li>Samsung Stainless Steel microwave oven
+  <ul>
+    <li>CC-BY-NC-SA Gregor Jehle</li>
+    <li>Original: CC-BY-NC-SA Samsung Tomorrow, 2014-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/</li>
+  </ul>
+  </li>
+  <li>Atmel ATmega32U4 Block Diagram
+  <ul>
+    <li>Color highlighting: CC-0 Gregor Jehle</li>
+    <li>Original: &copy; 2014 Atmel Corporation, 2014-05-28 15:00, Atmel-7766G-AVR-ATmega16U4-32U4-Datasheet_02/2014</li>
+  </ul>
+  </li>
 </ul>
 </div>
 </section>
@@ -1479,6 +1502,13 @@ pulse latch pin</code>
       { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
     ]
   });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $('.anim1').larson(8).larson('start');
+    $('.anim2').larson(16).larson('start');
+    $('.anim3').larson(16).larson('start');
+});
 </script>
 </body>
 </html>

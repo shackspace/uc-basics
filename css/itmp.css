@@ -26,7 +26,7 @@
 
 .reveal div#staticnav {
 	height: 30px;
-  width: 40px;
+    width: 40px;
 	overflow: hidden;
 	font-size: 50%;
 }
@@ -52,7 +52,12 @@
 
 .reveal section .photowrapper {
   font-size: 50%;
+  line-height: 100%;
   display: inline-block;
+}
+
+.unimportant {
+  color: grey;
 }
 
 .reveal section div.component div {
@@ -79,7 +84,8 @@
 }
 
 .reveal .overbar {
-	text-decoration: overline;
+	/*text-decoration: overline;*/
+    border-top: 4px solid;
 }
 
 div.floatleft img {
@@ -102,4 +108,43 @@ span.green {
 
 span.yellow {
 	color: yellow;
+}
+	
+div.component > div {
+    width: 200px;
+}
+
+/* formatting for individual items */
+
+.example_photo {
+    width: 300px;
+}
+
+#board_overview_description {
+    float: right;
+}
+
+#board_overview_description > ol {
+    valign: center;
+}
+
+#board_overview_photos {
+    display: block;
+}
+
+#board_overview_photos > img {
+    height: auto;
+    width: 30%;
+}
+
+#dontpanic {
+    width: 50%;
+}
+
+.atmel_components {
+    width: 70%;
+}
+
+#doubleshiftlarson {
+    width: 70%;
 }
