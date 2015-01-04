@@ -1,4 +1,5 @@
-# Presentation Content
+# Licenses
+## Presentation Content
 [<img src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt=Creative Commons License">](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
 [Introduction to Microcontroller Programming](https://github.com/shackspace/uc-basics)
 by [Joachim Fenkes](https://github.com/dop3j0e/) & [Gregor Jehle](https://github.com/hdznrrd/) 
@@ -26,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-# jquery.larson.js
+## jquery.larson.js
 jquery.larson.js is released under MIT license with the following modification:
 If you use this plugin, please send us Spumante :)
 End of modification.
@@ -55,7 +56,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-# Image Attribution
+## Image Attribution
 - Samsung Crystal Blue washing machine, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/
 - Rancilio coffee machine, CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/
 - Samsung Stainless Steel microwave oven, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/
