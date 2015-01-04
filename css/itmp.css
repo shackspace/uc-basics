@@ -84,7 +84,8 @@
 }
 
 .reveal .overbar {
-	text-decoration: overline;
+	/*text-decoration: overline;*/
+    border-top: 4px solid;
 }
 
 div.floatleft img {
