@@ -55,3 +55,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+# Image Attribution
+- Samsung Crystal Blue washing machine, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:31, https://www.flickr.com/photos/samsungtomorrow/14180614352/
+- Rancilio coffee machine, CC-BY-NC Faye Yu, 2014-05-14 15:42, https://www.flickr.com/photos/fayeyu/7776398/
+- Samsung Stainless Steel microwave oven, CC-BY-NC-SA Samsung Tomorrow, 2015-05-14 15:47, https://www.flickr.com/photos/samsungtomorrow/7792317532/
+- Atmel ATmega32U4 Block Diagram, &copy; 2014 Atmel Corporation, 2015-05-28 15:00, Atmel-7766G-AVR-ATmega16U4-32U4-Datasheet_02/2014
