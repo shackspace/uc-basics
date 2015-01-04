@@ -125,9 +125,9 @@ R.I.P., my friend
 
 
 <section><h3>Applications</h3>
-<div style="width: 300px" class="photowrapper"><img src="lib/ranciliocoffeemachine.png"><span class="unimportant">CC-BY-NC<br/>Gregor Jehle, Faye Yu</span></div>
-<div style="width: 300px" class="photowrapper"><img src="lib/samsungcrystalblue.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
-<div style="width: 300px" class="photowrapper"><img src="lib/samsungmicrowave.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
+<div class="example_photo photowrapper"><img src="lib/ranciliocoffeemachine.png"><span class="unimportant">CC-BY-NC<br/>Gregor Jehle, Faye Yu</span></div>
+<div class="example_photo photowrapper"><img src="lib/samsungcrystalblue.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
+<div class="example_photo photowrapper"><img src="lib/samsungmicrowave.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
 </section>
 
 
@@ -175,8 +175,8 @@ R.I.P., my friend
 
 
 <section><h3>The TinyMega Board</h3>
-<div style="float:right">
-<ol style="valign:center">
+<div id="board_overview_description">
+<ol>
   <li>The MCU itself</li>
   <li>USB jack</li>
   <li>Lots of labeled I/O pins</li>
@@ -184,9 +184,9 @@ R.I.P., my friend
   <li>Two buttons (Reset, Bootloader/User)</li>
 </ol>
 </div>
-<div style="display:block">
-<img src="lib/tinymega-bottom.svg" style="width:30%; height:auto;">
-<img src="lib/tinymega-top.svg" width="30%" style="height:auto;"><br/>
+<div id="board_overview_photos">
+<img src="lib/tinymega-bottom.svg">
+<img src="lib/tinymega-top.svg"><br/>
 </div>
 </section>
 
@@ -195,7 +195,7 @@ R.I.P., my friend
 <ul>
   <li class="fragment" data-fragment-index="1">Most important piece of documentation</li>
   <li class="fragment" data-fragment-index="1">433 pages o.O</li>
-  <li class="fragment" data-fragment-index="2"><img style="width:50%" src="lib/dontpanic.svg"></li>
+  <li class="fragment" data-fragment-index="2"><img id="dontpanic" src="lib/dontpanic.svg"></li>
   <li class="fragment" data-fragment-index="3">We will guide you to the relevant parts</li>
   <li class="fragment" data-fragment-index="3">General intro to datasheets will follow later</li>
   <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_%20Datasheet.pdf">bit.ly/1jjFFMb</a> (PDF)<br/>
@@ -697,12 +697,12 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>8x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>8x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>8x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>8x</div>
 </div></p>
 </section>
 
@@ -803,13 +803,13 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div>
-<div style="width: 200px"><img src="lib/pushbutton.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>8x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>8x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div>
+<div><img src="lib/pushbutton.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>8x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>8x</div>
 </div></p>
 </section>
 
@@ -1026,13 +1026,13 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/74595_dil.svg"><br/>2x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>16x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>16x</div>
+<div><img src="lib/74595_dil.svg"><br/>2x</div>
 </div></p>
 </section>
 
@@ -1165,13 +1165,13 @@ pulse latch pin</code>
 
 <section><h3>Stuff you will need</h3>
 <p><div class="component">
-<div style="width: 200px"><img src="lib/usbcable.svg"></div>
-<div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
-<div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
-<div style="width: 200px"><img src="lib/led_red.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>16x</div>
-<div style="width: 200px"><img src="lib/74595_dil.svg"><br/>2x</div>
+<div><img src="lib/usbcable.svg"></div>
+<div><img src="lib/tinymega_goff_boff.svg"></div>
+<div><img src="lib/breadboard.svg"></div><br/>
+<div><img src="lib/jumperwire.svg"><br/>several</div>
+<div><img src="lib/led_red.svg"><br/>16x</div>
+<div><img src="lib/resistor_180_5.svg"><br/>16x</div>
+<div><img src="lib/74595_dil.svg"><br/>2x</div>
 </div></p>
 </section>
 

@@ -96,3 +96,34 @@ div.floatleft > ul {
     float: left;
     width: 70%;
 }
+
+div.component > div {
+    width: 200px;
+}
+
+/* formatting for individual items */
+
+.example_photo {
+    width: 300px;
+}
+
+#board_overview_description {
+    float: right;
+}
+
+#board_overview_description > ol {
+    valign: center;
+}
+
+#board_overview_photos {
+    display: block;
+}
+
+#board_overview_photos > img {
+    height: auto;
+    width: 30%;
+}
+
+#dontpanic {
+    width: 50%;
+}
