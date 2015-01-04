@@ -195,7 +195,7 @@ R.I.P., my friend
   <li class="fragment" data-fragment-index="2"><img src="lib/dontpanic.png"></li>
   <li class="fragment" data-fragment-index="3">We will guide you to the relevant parts</li>
   <li class="fragment" data-fragment-index="3">General intro to datasheets will follow later</li>
-  <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_%20Datasheet.pdf">bit.ly/1jjFFMb</a> (PDF)<br/>
+  <li class="fragment" data-fragment-index="4">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf">bit.ly/1Ht3JLj</a> (PDF)<br/>
   <small>(Note: Hover any shortened link to see where it leads)</small></li>
 <ul>
 </section>
@@ -289,7 +289,7 @@ R.I.P., my friend
 
 
 <section><h3>Port control: Example</h3>
-<pre><code data-trim>#include &lt;avr/io.h&gt;
+<pre><code data-trim class="cpp">#include &lt;avr/io.h&gt;
 
 {
     // After reset, all pins default to input, no pull-up
@@ -425,7 +425,7 @@ int main(void)
   </li>
   <li class="fragment">Trap: Defaults to "divide by 8" in factory settings!</li>
   <li class="fragment">Solution:
-  <pre><code data-trim>#include &lt;avr/power.h&gt;
+  <pre><code data-trim class="cpp">#include &lt;avr/power.h&gt;
 clock_prescale_set(clock_div_1);</code></pre>
   </li>
 </ul>
@@ -619,7 +619,7 @@ ISR(TIMER0_COMPA_vect)
 </section>
 
 <section><h3>The setup code</h3>
-<pre><code data-trim>#include &lt;avr/io.h&gt;
+<pre><code data-trim class="cpp">#include &lt;avr/io.h&gt;
 
 {
     TCCR1A = 0;
@@ -638,7 +638,7 @@ ISR(TIMER0_COMPA_vect)
 <ul>
   <li>Task: Transform the busy loop from module 1 into a timer-driven blinking LED.
     <ul>
-      <li><pre class="inline">cp module1.c module2.c</pre></li>
+      <li><pre><code class="bash">cp module1.c module2.c</code></pre></li>
     </ul>
   </li>
   <li class="fragment">Info:
@@ -660,7 +660,7 @@ ISR(TIMER0_COMPA_vect)
 <ul>
   <li>Toggle a port pin value by writing PINx:
 	<ul>
-		<li><pre class="inline"><code data-trim>PINE = 1 << PE6;</code></pre></li>
+		<li><pre class="inline"><code data-trim class="cpp">PINE = 1 << PE6;</code></pre></li>
 		<li>Little known AVR feature</li>
 	</ul>
   </li>
@@ -706,8 +706,10 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>LED basics</h3>
 <ul>
+	<li>Cathode = Minus = short leg = Base plate inside LED<br>
+		<small>(German: <strong>K</strong>athode = <strong>k</strong>urzes Bein)</small></li>
 	<li>An LED's brightness depends on current</li>
-	<li>Typical I<sub>F</sub>: 20 mA</li>
+	<li>Typical I<sub>F</sub>: 10..20 mA</li>
 	<li>Let's check the datasheet for the expected V<sub>F</sub></li>
 </ul>
 </section>
@@ -741,8 +743,8 @@ ISR(TIMER0_COMPA_vect)
 <section><h3>Our LED</h3>
 <ul>
 	<li>I<sub>F</sub> = 20 mA</li>
-	<li>V<sub>F</sub> = 1.8 V</li>
-	<li><i class="fa fa-arrow-right"></i> R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> = 160 &Omega;</li>
+	<li>V<sub>F</sub> = 1.85 V</li>
+	<li>&rArr; R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> &asymp; 160 &Omega;</li>
 	<li>Pick next higher standard value: 180 &Omega;</li>
 </ul>
 </section>
@@ -768,7 +770,7 @@ ISR(TIMER0_COMPA_vect)
 <ul>
 	<li>Task: Implement a Larson Scanner
 		<ul>
-			<li><pre><code>cp module2.c module3.c</code></pre></li>
+			<li><pre><code class="bash">cp module2.c module3.c</code></pre></li>
 		</ul>
 	</li>
 	<li>Info:
@@ -814,18 +816,18 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Add a button!</h3>
 <ul>
-  <li>Button will usually connect A to B when pressed
+  <li>Button will usually connect A to B when pushed
     <ul>
       <li>"Single Pole, Single Throw" - SPST</li>
 	  <li><table>
-		<tr><td>Pole</td><td><i class="fa fa-arrow-right"></i></td><td>number of "channels"</td></tr>
-		<tr><td>Throw</td><td><i class="fa fa-arrow-right"></i></td><td>number of positions per channel</td></tr>
+		<tr><td>Pole</td><td>&rArr;</td><td>number of "channels"</td></tr>
+		<tr><td>Throw</td><td>&rArr;</td><td>number of positions per channel<br><small>(think "# ways to throw a switch")</small></td></tr>
 	  </table></li>
     </ul>
   </li>
-  <li>Idea: Press to connect input pin to VDD
+  <li>Idea: Push to connect input pin to VDD
     <ul>
-      <li>But what happens while not pressed?</li>
+      <li>But what happens while not pushed?</li>
     </ul>
   </li>
 </ul>
@@ -884,7 +886,7 @@ ISR(TIMER0_COMPA_vect)
           <ul><li>So choose pull-up with button to GND</li></ul>
         </li>
         <li class="fragment" data-fragment-index="2">Switch pin to input + pull-up
-          <ul><li>If we read a <em>zero</em>, the button is <em>pressed</em></li></ul>
+          <ul><li>If we read a <em>zero</em>, the button is <em>pushed</em></li></ul>
         </li>
 </ul>
 </section>
@@ -902,7 +904,7 @@ ISR(TIMER0_COMPA_vect)
               <li>"Level triggered"</li>
             </ul>
             </li>
-            <li>Do something when button goes from "not pushed" to "pushed"
+            <li>Do something when button changes from "not pushed" to "pushed"
             <ul>
               <li>Will do something once per button push-release cycle</li>
               <li>"Edge triggered"</li>
@@ -918,7 +920,7 @@ ISR(TIMER0_COMPA_vect)
 <section><h3>Now go forth and code!</h3>
 <ul>
         <li>Task: Advance Larson Scanner manually instead of timer
-        <ul><li><pre class="inline"><code>cp module3.c module4.c</code></pre></li></ul>
+        <ul><li><pre><code class="bash">cp module3.c module4.c</code></pre></li></ul>
         </li>
         <li>Info:
           <ul>
@@ -997,8 +999,8 @@ ISR(TIMER0_COMPA_vect)
         <ul><li>Triggers on any change</li></ul></li>
         <li>External Interrupt
         <ul><li>Trigger on rising edge, falling edge, or low level</li></ul></li>
-        <li>Check out datasheet chapter 11 for details</li>
 </ul>
+<p>Check out datasheet chapter 11 for details</p>
 </section>
 
 
@@ -1026,7 +1028,7 @@ ISR(TIMER0_COMPA_vect)
 <div style="width: 200px"><img src="lib/usbcable.svg"></div>
 <div style="width: 200px"><img src="lib/tinymega_goff_boff.svg"></div>
 <div style="width: 200px"><img src="lib/breadboard.svg"></div><br/>
-<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>several</div>
+<div style="width: 200px"><img src="lib/jumperwire.svg"><br/>lots</div>
 <div style="width: 200px"><img src="lib/led_red.svg"><br/>16x</div>
 <div style="width: 200px"><img src="lib/resistor_180_5.svg"><br/>16x</div>
 <div style="width: 200px"><img src="lib/74595_dil.svg"><br/>2x</div>
@@ -1034,7 +1036,7 @@ ISR(TIMER0_COMPA_vect)
 </section>
 
 
-<section><h3>What's a shift register?</h3>
+<section><h3>What is a shift register?</h3>
 <ul>
 	<li>Converts serial data to parallel data or vice versa</li>
 	<li>Data is shifted in/out bit by bit
@@ -1053,7 +1055,7 @@ ISR(TIMER0_COMPA_vect)
 
 
 <section><h3>How do I use a SIPO shift reg?</h3>
-<pre><code>for (i = 0 .. number of bits) {
+<pre><code class="no-highlight">for (i = 0 .. number of bits) {
     set data input pin to next bit
         (starting with outermost bit)
     pulse clock pin
@@ -1082,11 +1084,11 @@ pulse latch pin</code>
 			<li>From every vendor</li>
 		</ul>
 	</li>
-	<li>VV74SSNNN
+	<li><span class="green">VV</span>74<span class="yellow">SS</span><span class="red">NNN</span>
 		<ul>
-			<li>VV - Vendor, e.g. SN for Texas Instruments</li>
-			<li>SS - Series, e.g. HC for High-Speed CMOS</li>
-			<li>NNN - Device ID, 595 is latched SIPO</li>
+			<li><span class="green">VV</span> - Vendor, e.g. SN for Texas Instruments</li>
+			<li><span class="yellow">SS</span> - Series, e.g. HC for High-Speed CMOS</li>
+			<li><span class="red">NNN</span> - Function, 595 is latched SIPO</li>
 		</ul>
 	</li>
 </ul>
@@ -1094,9 +1096,23 @@ pulse latch pin</code>
 
 
 
-<section><h3>Circuit building</h3>
+<section><h3>SN74HC595 datasheet</h3>
 <ul>
-	<li>Get the datasheet (<a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">bit.ly/UdZpfR</a>, PDF)
+	<li>Get the datasheet (<a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">bit.ly/UdZpfR</a>, PDF)</li>
+	<li>This is for an NXP part, but equivalent and more readable</li>
+	<li>Unusual pin names:
+		<ul>
+			<li>SHCP = Shift Clock Pulse = Serial clock</li>
+			<li>STCP = Storage Clock Pulse = LATCH</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+
+<section><h3>Circuit Building</h3>
+<ul>
 	<li>Put the two 74HC595 onto the breadboard
 		<ul>
 			<li>Connect VDD and GND, tie <span class="overbar">MR</span> to VDD, <span class="overbar">OE</span> to GND</li>
@@ -1123,7 +1139,7 @@ pulse latch pin</code>
 <ul>
 	<li>Task: Transform the Larson Scanner to use SIPO
 		<ul>
-			<li><pre><code>cp module4.c module5.c</code></pre></li>
+			<li><pre><code class="bash">cp module4.c module5.c</code></pre></li>
 		</ul>
 	</li>
 	<li>Info:
@@ -1314,7 +1330,7 @@ pulse latch pin</code>
 <ul>
 	<li>Task: Transform SIPO code from bit-banging to SPI
 		<ul>
-			<li><pre><code>cp module5.c module6.c</code></pre></li>
+			<li><pre><code class="bash">cp module5.c module6.c</code></pre></li>
 		</ul>
 	</li>
 	<li>Info:
@@ -1413,8 +1429,8 @@ pulse latch pin</code>
     <li>Slides: <a href="https://github.com/shackspace/uc-basics">github.com/shackspace/uc-basics</a></li>
     <li>Datasheets
       <ul>
-        <li>Microcontroller (ATmega23U4): <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_%20Datasheet.pdf">bit.ly/1jjFFMb</a> (PDF)</li>
-        <li>LED</li>
+        <li>Microcontroller (ATmega23U4): <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf">bit.ly/1Ht3JLj</a> (PDF)</li>
+        <li>LED: <a href="http://www.kingbrightusa.com/images/catalog/SPEC/WP113SRDT.pdf">bit.ly/1IbHPdP</a> (PDF)</li>
         <li>Shift Register (74595): <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">bit.ly/UdZpfR</a> (PDF)</li>
       </ul>
     </li>

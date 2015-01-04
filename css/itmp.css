@@ -91,3 +91,15 @@ div.floatleft > ul {
     float: left;
     width: 70%;
 }
+
+span.red {
+	color: red;
+}
+
+span.green {
+	color: green;
+}
+
+span.yellow {
+	color: yellow;
+}
