@@ -102,6 +102,11 @@ div.component > div {
     width: 200px;
 }
 
+div.table { display: table; }
+div.tr { display: table-row; }
+div.td { display: table-cell; }
+
+
 /* formatting for individual items */
 
 .example_photo {
@@ -126,7 +131,10 @@ div.component > div {
 }
 
 #dontpanic {
-    width: 50%;
+    width: 30%;
+}
+#dontpanic > img {
+    width: 80%;
 }
 
 .atmel_components {
