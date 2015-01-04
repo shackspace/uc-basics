@@ -414,13 +414,13 @@ int main(void)
 <p>
 <ol>
   <li>Erase the whole device -- bootloader always needs this<br/>
-      <pre class="inline">sudo dfu-programmer atmega32u4 erase</pre>
+      <pre class="inline fragment">sudo dfu-programmer atmega32u4 erase</pre>
   </li>
-  <li class="fragment">Program the HEX file we just generated<br/>
-      <pre class="inline">sudo dfu-programmer atmega32u4 flash module1.hex</pre>
+  <li>Program the HEX file we just generated<br/>
+      <pre class="inline fragment">sudo dfu-programmer atmega32u4 flash module1.hex</pre>
   </li>
-  <li class="fragment">Have the bootloader jump into the firmware<br/>
-      <pre class="inline">sudo dfu-programmer atmega32u4 start</pre>
+  <li>Have the bootloader jump into the firmware<br/>
+      <pre class="inline fragment">sudo dfu-programmer atmega32u4 start</pre>
   </li>
 </ol>
 <br/><br/>
