@@ -257,28 +257,50 @@ R.I.P., my friend
 
 
 <section><h3>General Purpose I/O</h3>
-<div class="floatleft">
-    <img src="lib/input-range.svg">
-<ul>
-  <li>Most I/O pins of the ATmega can be controlled directly as digital I/O
-    <ul><li><table>
-	  <tr><td>Output mode:</td><td>Write a zero (GND) or one (supply voltage, VDD)</td></tr>
-	  <tr><td>Input mode:</td><td>Convert pin voltage to one or zero and return<br/>
-          Optional pull-up resistor selectable by software</td></tr>
-    </table></li></ul>
-  </li>
-  <li class="fragment">Pins are grouped into "ports"
-    <ul>
-      <li>ATmega32U4 has ports B, C, D, E, F</li>
-      <li>Pins inside a port are numbered 0..7<br/>
-          Ex. B1, B2, C7</li>
-    </ul>
-  </li>
-  <li class="fragment">Not all ports have all pins populated</li>
-</ul>
+<div class="table">
+    <div class="tr">
+        <div class="td">
+            <ul>
+              <li>Most I/O pins of the ATmega can be controlled directly as digital I/O
+            </ul>
+        </div>
+    </div>
+    <div class="tr">
+        <div class="td">
+            <ul>
+              <li class="fragment">Output mode
+                  <ul>
+                      <li>Write a zero (GND) or one (supply voltage, VDD)</li>
+                  </ul>
+              </li>
+              <li class="fragment">Input mode
+                  <ul>
+                      <li>Convert pin voltage to one or zero and return</li>
+                      <li>Optional pull-up resistor selectable by software</li>
+                  </ul>
+              </li>
+            </ul>
+        </div>
+        <div class="fragment td" id="inputrange">
+            <img src="lib/input-range.svg">
+        </div>
+    </div>
 </div>
 </section>
 
+<section><h3>General Purpose I/O</h3>
+<div>
+    <ul>
+      <li>Pins are grouped into "ports"
+        <ul>
+          <li class="fragment">ATmega32U4 has ports B, C, D, E, F</li>
+          <li class="fragment">Pins inside a port are numbered 0..7<br/>eg. B1, B2, C7</li>
+        </ul>
+      </li>
+      <li class="fragment">Not all ports have all pins populated</li>
+    </ul>
+</div>
+</section>
 
 <section><h3>Port control though registers</h3>
 <ul>
