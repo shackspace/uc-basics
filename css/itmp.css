@@ -137,7 +137,7 @@ div.td { display: table-cell; }
     display: block;
 }
 
-#board_overview_photos > img {
+#board_overview_photos img {
     height: auto;
     width: 30%;
 }
