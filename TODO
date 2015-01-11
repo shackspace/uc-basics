@@ -1,0 +1,36 @@
+datentypen (use uint8_t)
+std datentypen entscheidet der compiler (int, short, char)
+spezielle typen forced der user (uint*_t)
+avr ist 8bitter -> implikationen
+beispiel fuer floatingpoint
+FPU kurz erwaehnen was sie tut
+erwaehnen dass die farben in den blockschaltbildern tatsaechlich die gleichen sind
+Abgrenzung gegenueber Arduino
+tilde in spannungspegeln in ca. aendern -- sieht aus wie minus
+kontrastreicheres theme fuer highlight.js (beamer)
+konzept von avr-headern mit shift-werten explizit erklaeren
+
+1x tuna medium
+1x crazy dog large
+2x crazy dog medium
+1x salami large
+1x salat rocco ohne dressing
+2x waikiki medium
+1x pizzabroetchen mit schinken
+
+avr-libc muss auf redhat separat installiert werden
+bootloader ist in den oberen 4k flash --> nur 28k platz
+ausgeschriebene versionen der namen der register fuer besseres verstaendnis
+
+wo ist der link zum led-datenblatt hin?
+bitops fuer noobs cheatsheet am anfang
+wo findet man doku der avr-libc? zb name der spi ir-handler
+10 uhr anfangen
+linksammlungs slide am anfang
+cheatsheet handout auf papier
+
+
+
+level 2
+inline assembly
+bus
