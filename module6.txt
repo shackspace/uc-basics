@@ -1,0 +1,183 @@
+
+<!--
+#######################################################
+#######################################################
+
+                 MODULE 6: Hardware SPI
+
+#######################################################
+#######################################################
+-->
+<section id="spi"><h3>Module 6</h3>
+<h4>SPI - HW serial data</h4>
+<p>in which a loop will move into hardware!</p>
+<div class="larson anim3"></div>
+</section>
+
+
+<section><h3>Stuff you will need</h3>
+<p><div class="component">
+<div><img src="lib/components/usbcable.svg"></div>
+<div><img src="lib/components/tinymega_goff_boff.svg"></div>
+<div><img src="lib/components/breadboard.svg"></div><br/>
+<div><img src="lib/components/jumperwire.svg"><br/>several</div>
+<div><img src="lib/components/led_red.svg"><br/>16x</div>
+<div><img src="lib/components/resistor_180_5.svg"><br/>16x</div>
+<div><img src="lib/components/74595_dil.svg"><br/>2x</div>
+</div></p>
+</section>
+
+
+<section><h3>Bit-banging</h3>
+<ul>
+	<li>Common term in embedded programming</li>
+	<li>Operating bit protocol by toggling pins from software</li>
+	<li>Con: Not very hardware efficient</li>
+	<li>Pro: Any protocol can be implemented</li>
+</ul>
+</section>
+
+
+<section><h3>What is SPI?</h3>
+<ul>
+	<li>"Serial Peripheral Interface"</li>
+	<li>Basically a daisy chain of shift registers</li>
+	<li>"Master" drives the chain, supplies the clock</li>
+	<li>"Slaves" only react</li>
+	<li>Last slave output may go back into the uC for return data</li>
+	<li>No defined protocol for actual data
+		<ul>
+			<li>Device datasheets will tell</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>SPI signals</h3>
+<ul><table>
+	<tr><td>MOSI</td><td>-</td><td>Master Out / Slave In</td></tr>
+	<tr><td>MISO</td><td>-</td><td>Master In / Slave Out</td></tr>
+	<tr><td>SCK </td><td>-</td><td>Serial Clock</td></tr>
+	<tr><td>SS  </td><td>-</td><td>Slave Select (optional)</td></tr>
+</table></ul>
+</section>
+
+
+<section><h3>SPI applications</h3>
+<ul>
+	<li>Control any number of SPI slaves</li>
+	<li>Generally, shift out serial data with clock</li>
+	<li>We can use this for our SIPO shift regs!</li>
+</ul>
+</section>
+
+
+<section><h3>SPI capabilities in the ATmega</h3>
+<ul>
+	<li>Both master and slave mode supported</li>
+	<li>LSB-first and MSB-first modes</li>
+	<li>Four kinds of CLK vs. data relationships (17.2)
+		<ul>
+			<li>Low-active vs. high-active clock</li>
+			<li>Sample on leading or trailing edge of clock</li>
+		</ul>
+	</li>
+	<li>Interrupt on byte completion</li>
+</ul>
+</section>
+
+
+<section><h3>SPI pins on the ATmega</h3>
+<ul>
+	<li>SPI pins mapped to fixed port pins
+		<ul>
+			<li>Other MCUs are more flexible</li>
+		</ul>
+	</li>
+	<li>Trap: Be careful what you use the SS pin for!
+		<ul>
+			<li>Could abort transmission in Master mode (17.1.2)</li>
+		</ul>
+	</li>
+	<li>Pin data controlled by HW</li>
+	<li>FW responsible for setting up pin direction!</li>
+</ul>
+</section>
+
+
+<section><h3>Setting up the SPI controller</h3>
+<ul>
+	<li>SPCR - SPI Control Reg (17.1.3)
+		<ul>
+			<li>Most bits are obvious, but:</li>
+			<li>Data order?</li>
+			<li>Clock polarity?</li>
+			<li>Clock phase?</li>
+		</ul>
+	</li>
+	<li>SPSR - SPI Status Reg (17.1.4)
+		<ul>
+			<li>Read before first writing SPDR</li>
+			<li>Clears any pending interrupts</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+	
+<section><h3>SPI transmission</h3>
+<ul>
+	<li>SPDR - SPI Data Reg (17.1.5)
+		<ul>
+			<li>Write data here</li>
+			<li>Don't write again until byte finished</li>
+		</ul>
+	</li>
+	<li>Handle next byte(s) in SPI interrupt
+		<ul>
+			<li>Use volatile data pointer</li>
+			<li>Write next byte to SPDR</li>
+			<li>When transfer finished
+				<ul>
+					<li>Disable SPI to be safe</li>
+					<li>Strobe LATCH signal</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>Now go forth and code!</h3>
+<ul>
+	<li>Task: Transform SIPO code from bit-banging to SPI
+		<ul>
+			<li><pre><code class="bash">cp module5.c module6.c</code></pre></li>
+		</ul>
+	</li>
+	<li>Info:
+		<ul>
+			<li>Make sure you use the correct pins</li>
+			<li>Remember to set up pin directions</li>
+			<li>Start SPI xfer on timer IRQ</li>
+			<li>Keep SPI running through SPI IRQ</li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+<section><h3>Tips & Tricks</h3>
+<ul>
+	<li>Interrupt-driven SPI not very fast =/
+	<ul>
+		<li>Entering + leaving ISR takes 30ish cycles</li>
+		<li>About as long as transmitting a byte!</li>
+		<li>If SPI speed is an issue, consider polling</li>
+	</ul>
+	</li>
+</ul>
+</section>
+
