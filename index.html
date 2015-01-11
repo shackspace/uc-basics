@@ -366,8 +366,17 @@ R.I.P., my friend
     <ul>
       <li><pre>apt-get install avr-gcc
 apt-get install dfu-programmer</pre></li>
+      <li>Some distros (e.g. Red Hat) may require explicit <code>avr-libc</code> install</li>
+	  <li>If in doubt, search for packages with <code>avr</code> or <code>dfu</code> in their name</li>
     </ul>
   </li>
+  <li>Mac OS X
+	<ul>
+		<li>You'll need the Homebrew package manager: <a href="http://brew.sh/">http://brew.sh/</a></li>
+		<li><pre>brew tap larsimmisch/avr
+brew install avr-gcc
+brew install dfu-programmer</pre></li>
+	</ul>
   <li>Windows
     <ul>
       <li>AVR 8-bit Toolchain: <a href="http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx">bit.ly/1gHcJTy</a></li>
