@@ -1,0 +1,35 @@
+Caveat: WORK IN PROGRESS
+
+
+# Operators
+               Bit   Logical
+AND            &     &&
+OR             |     ||
+NOT            ~     !
+XOR            ^     n/a
+SHIFT LEFT     <<    n/a
+SHIFT RIGHT    >>    n/a
+
+Caveat: if you want to fiddle with bits, don't use logical operators!
+
+# Truth Tables
+& | 0 1   | | 0 1   ^ | 0 1
+--+----   --+----   --+----
+0 | 0 0   0 | 0 1   0 | 0 1
+1 | 0 1   1 | 1 1   1 | 1 0
+
+# Bits & Bytes
+8 Bits make 1 Byte
+
+Bits are numbered from left to right          87654321
+
+# Shifting
+11001010 >> 2 => 00110010
+11001010 << 2 => 00101000
+
+Create mask with n-th bit set                 (1<<n)              (1<<3)       => 00001000
+Create mask with n-th and m-th bit set        (1<<n)|(a<<m)       (1<<3)|1<<7) => 10001000
+Create mask with everything but n-th bit set  ~(1<<n)             ~(1<<3)      => 11110111
+
+Set high-bits of mask m in v                  v |= m
+Clear high-bits of mask m in v                v &= ~m
