@@ -233,9 +233,9 @@ R.I.P., my friend
 <section><h3>Arduino vs. bare metal coding</h3>
 <ul>
 	<li>Arduino hides the gory details</li>
-	<li>Pro: Easier to learn, quick prototyping</li>
-	<li>Con: You don't understand how it's done &rarr; "magic"</li>
-	<li>Con: Arduino trades speed & size for simplicity</li>
+	<li class="fragment" data-fragment-index="2">Pro: Easier to learn, quick prototyping</li>
+	<li class="fragment" data-fragment-index="3">Con: You don't understand how it's done &rarr; "magic"</li>
+	<li class="fragment" data-fragment-index="3">Con: Arduino trades speed & size for simplicity</li>
 </ul>
 </section>
 
@@ -279,7 +279,18 @@ R.I.P., my friend
   </ul>
 </li>
 <li class="fragment">avr-libc takes care of the gory stuff</li>
-<li class="fragment"><strong>Caveat:</strong> Never exit the main-loop!</li>
+<li class="fragment"><strong>Caveat:</strong> Don't exit the main-loop</li>
+</ul>
+</section>
+
+
+<section><h3>avr-libc</h3>
+<ul>
+	<li>Startup code, platform support</li>
+	<li>Standard C library functions</li>
+	<li>Access to uC specialties (<code>avr/*.h</code>)</li>
+	<li class="fragment" data-fragment-index="2">Home page: <a href="http://www.nongnu.org/avr-libc/">http://bit.ly/1yI2MN0</a></li>
+	<li class="fragment" data-fragment-index="2">Prettier docs: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">http://bit.ly/1CduWR7</a></li>
 </ul>
 </section>
 
@@ -373,6 +384,7 @@ R.I.P., my friend
     if (!(PINB & _BV(PB3)))   // If something pulls B3 down...
         PORTB |= _BV(PB2);    // Set B2 to high, keep rest as is
 }</code></pre>
+<div class="fragment">Register field names in avr-libc are generally <em>shift distances</em>, not values. This is necessary for multi-bit fields.</div>
 </section>
 
 
@@ -594,6 +606,8 @@ ISR(TIMER0_COMPA_vect)
 {
     // Code goes here
 }</code></pre>
+
+<div>See <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">http://bit.ly/15b5KgO</a> for possible interrupt names</div>
 </section>
 
 
@@ -745,7 +759,7 @@ ISR(TIMER0_COMPA_vect)
   <li>Save power by using Sleep Mode in main loop
     <ul>
       <li>Chapter 7 of datasheet<br/>
-        avr-libc sleep mode documentation: <a href="http://www.nongnu.org/avr-libc/user-manual/group__avr__sleep.html">bit.ly/1ttg2hR</a>
+        avr-libc sleep mode documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a>
       </li>
     </ul>
   </li>
@@ -1339,6 +1353,16 @@ pulse latch pin</code>
       </ul>
     </li>
   </ul>
+</section>
+
+<section><h3>Links to relevant avr-libc docs</h3>
+<ul>
+	<li>Base documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">http://bit.ly/1CduWR7</a></li>
+	<li>Interrupts: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">http://bit.ly/15b5KgO</a></li>
+	<li>Power & Clocks: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__power.html">http://bit.ly/1BGLSAr</a></li>
+	<li>Sleep mode: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a></li>
+	<li>EEPROM access: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__eeprom.html">http://bit.ly/1Bf4qFh</a></li>
+</ul>
 </section>
 
 <section><h3>Source Attribution</h3>
