@@ -381,8 +381,8 @@ R.I.P., my friend
     // After reset, all pins default to input, no pull-up
     PORTB = (1 << PB3);       // Enable pull-up on B3
     DDRB = (1 << PB2);        // Set B2 to output, all others to input
-    if (!(PINB & _BV(PB3)))   // If something pulls B3 down...
-        PORTB |= _BV(PB2);    // Set B2 to high, keep rest as is
+    if (!(PINB & (1 << PB3)))   // If something pulls B3 down...
+        PORTB |= (1 << PB2);    // Set B2 to high, keep rest as is
 }</code></pre>
 <div class="fragment">Register field names in avr-libc are generally <em>shift distances</em>, not values. This is necessary for multi-bit fields.</div>
 </section>
