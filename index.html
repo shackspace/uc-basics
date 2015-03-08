@@ -360,7 +360,7 @@ R.I.P., my friend
 	<tr>
         <td>PINx</td>
         <td class="fragment" data-fragment-index="3">&rArr;</td>
-        <td class="fragment" data-fragment-index="3">Read input values</td>
+        <td class="fragment" data-fragment-index="3">Read input values <small>(read "Port INput", not "Pin"!)</small></td>
     </tr>
 	<tr>
         <td>DDRx</td>
@@ -668,19 +668,19 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Building the T/C control registers</h3>
 <ul>
-  <li>TCCR1A - 14.10.1
+  <li>TCCR1A - 14.10.1 <small>(Timer/Counter Control Register A, T/C 1)</small>
     <ul class="fragment">
       <li>We can ignore the Compare Output Modes</li>
       <li>Choose WGM 4: CTC with TOP = OCR1A</li>
     </ul>
   </li>
-  <li>TCCR1B - 14.10.3
+  <li>TCCR1B - 14.10.3 <small>(Timer/Counter Control Register B, T/C 1)</small>
     <ul class="fragment">
       <li>We can ignore Input Capture</li>
       <li>Clock Select = 0b101 (CLK / 1024)</li>
     </ul>
   </li>
-  <li>TCCR1C - 14.10.5
+  <li>TCCR1C - 14.10.5 <small>(you get the idea)</small>
     <ul class="fragment">
       <li>Can be ignored</li>
     </ul>
@@ -691,17 +691,17 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Building the T/C control registers</h3>
 <ul>
-  <li>OCR1A - 14.10.9
+  <li>OCR1A - 14.10.9 <small>(Output Compare Register A, T/C 1)</small>
     <ul class="fragment">
       <li>Determines IRQ frequency</li>
     </ul>
   </li>
-  <li>TIMSK1 - 14.10.17
+  <li>TIMSK1 - 14.10.17 <small>(Timer Interrupt Mask, T/C 1)</small>
     <ul class="fragment">
       </li>Enable OCIE1A, disable all others</li>
     </ul>
   </li>
-  <li>TIFR1 - 14.10.19
+  <li>TIFR1 - 14.10.19 <small>(Timer Interrupt Flag Register, T/C 1)</small>
     <ul class="fragment">
       <li>Write 0xFF once to clear all pending IRQs</li>
       <li>Just to be safe</li>

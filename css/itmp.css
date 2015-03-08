@@ -118,6 +118,7 @@ div.table { display: table; }
 div.tr { display: table-row; }
 div.td { display: table-cell; }
 
+.reveal small { vertical-align: middle; }
 
 /* formatting for individual items */
 
