@@ -193,6 +193,31 @@ R.I.P., my friend
 </aside>
 </section>
 
+<section><h3>AVR 8-bitness</h3>
+<ul>
+	<li>AVR is an 8-bit CPU
+	<ul>
+		<li>Each instruction takes 8-bit operands</li>
+		<li>More bits are emulated with multiple instructions</li>
+	</ul>
+	</li>
+	<li class="fragment"><strong>Caveat:</strong> <code>int</code> defaults to 16 bits!
+	<ul>
+		<li>&rarr; Wasted cycles if 8 bits are enough</li>
+		<li>Make it a habit to use uint8_t</li>
+	</ul>
+	</li>
+	<li class="fragment"><code>#include &lt;inttypes.h&gt;</code>
+	<ul>
+		<li><table>
+			<tr><td><code>uintN_t</code></td><td>unsigned integer, N bits</td></tr>
+			<tr><td><code>intN_t</code></td><td>signed integer, N bits</td></tr>
+		</table></li>
+	</ul>
+	</li>
+</ul>
+</section>
+
 
 <section><h3>The TinyMega Board</h3>
 <div id="board_overview_description">
