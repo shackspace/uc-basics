@@ -237,6 +237,9 @@ R.I.P., my friend
 	<li class="fragment" data-fragment-index="3">Con: You don't understand how it's done &rarr; "magic"</li>
 	<li class="fragment" data-fragment-index="3">Con: Arduino trades speed & size for simplicity</li>
 </ul>
+<aside class="notes">
+	Speed trade-off example: Mapping of pin numbers to ATmega ports/pins via table, so several instructions / memory access vs. single bit set/clear instruction.
+</aside>
 </section>
 
 
@@ -281,6 +284,9 @@ R.I.P., my friend
 <li class="fragment">avr-libc takes care of the gory stuff</li>
 <li class="fragment"><strong>Caveat:</strong> Don't exit the main-loop</li>
 </ul>
+<aside class="notes">
+	If anyone asks: avr-libc puts an infinite loop after main() exits.
+</aside>
 </section>
 
 
@@ -385,6 +391,9 @@ R.I.P., my friend
         PORTB |= (1 << PB2);    // Set B2 to high, keep rest as is
 }</code></pre>
 <div class="fragment">Register field names in avr-libc are generally <em>shift distances</em>, not values. This is necessary for multi-bit fields.</div>
+<aside class="notes">
+	If anyone asks about what a pull-up is -- we'll cover that later today.
+</aside>
 </section>
 
 
@@ -396,6 +405,9 @@ R.I.P., my friend
     _delay_ms(1000);  // waaaait a sec...
     _delay_us(10);    // and a bit more
 }</code></pre>
+<aside class="notes">
+	These are busy delay loops that work because they know how long specific instructions take based on F_CPU.
+</aside>
 </section>
 
 <section><h3>Toolchain installation</h3>
@@ -423,6 +435,9 @@ brew install dfu-programmer</pre></li>
     </ul>
   </li>
 </ul>
+<aside class="notes">
+	We are not going to spend time setting up a full IDE. There are tools available for every platform, e.g. Eclipse, but any text editor with syntax highlighting will do today.
+</aside>
 </section>
 
 
@@ -456,6 +471,9 @@ int main(void)
 	  <code>data</code> + <code>bss</code> &rArr; RAM usage</span>
   </li>
 </ol>
+<aside class="notes">
+	text is the program code. bss is uninitialized data. data is initialized data that is copied from Flash to SRAM before main() is called. There is a way to prevent static data from being copied to RAM -- google for PROGMEM.
+</aside>
 </section>
 
 
@@ -475,12 +493,18 @@ int main(void)
 <br/><br/>
 <span class="fragment">Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> group.</span>
 </p>
+<aside class="notes">
+	The default bootloader works in "secure" mode where the only allowed first operation after power-up is erase.
+</aside>
 </section>
 
 
 <section><h3>Program (Windows)</h3>
 <img src="lib/screenshots/flip.png">
 <p>Make sure "Reset" is turned off for your first programs</p>
+<aside class="notes">
+	No need to mention this, but if anyone asks: "Reset" would reset the device using the watchdog. If the user program doesn't disable the watchdog, the uC will repeatedly reset. Unchecking "reset" will make the bootloader jump to the user program, so the uC state may not be exactly as after a reset.
+</aside>
 </section>
 
 
@@ -520,7 +544,10 @@ clock_prescale_set(clock_div_1);</code></pre>
   </li>
 </ul>
 <br/><br/>
-</section
+<aside class="notes">
+	Ask whether anyone accidentally made their TinyMega 3.3V. They should use clock_div_2.
+</aside>
+</section>
 
 
 <!--
@@ -538,7 +565,6 @@ clock_prescale_set(clock_div_1);</code></pre>
 <h4>Interrupts & Timers</h4>
 
 <p>in which we will waste less CPU cycles!</p>
-<!--<p><div class="component"><img src="lib/tinymega_gon_bon-off.gif"></div></p>-->
 <p><div class="component"><img src="lib/components/tinymega_gon_bon.svg"></div></p>
 </section>
 
@@ -600,7 +626,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 </ul>
 
 <br/><br/>
-<pre><code data-trim>#include &lt;avr/interrupt.h&gt
+<pre><code data-trim class="cpp">#include &lt;avr/interrupt.h&gt
 
 ISR(TIMER0_COMPA_vect)
 {
@@ -620,10 +646,8 @@ ISR(TIMER0_COMPA_vect)
   </li>
   <li class="fragment">Communication with main loop: shared global variables
     <ul>
-      <li>Declare them <code>volatile</code>!
-        <ul>
-          <li>Tells compiler they may change without notice</li>
-        </ul>
+      <li>Declare them <code>volatile</code>!<br/>
+          Tells compiler they may change without notice
       </li>
     </ul>
   </li>
@@ -698,7 +722,7 @@ ISR(TIMER0_COMPA_vect)
   </li>
   <li>TIMSK1 - 14.10.17 <small>(Timer Interrupt Mask, T/C 1)</small>
     <ul class="fragment">
-      </li>Enable OCIE1A, disable all others</li>
+      </li>Enable OCIE1A, disable all others<br/><small>(Output Compare A Interrupt Enable, T/C 1)</small></li>
     </ul>
   </li>
   <li>TIFR1 - 14.10.19 <small>(Timer Interrupt Flag Register, T/C 1)</small>
@@ -714,13 +738,13 @@ ISR(TIMER0_COMPA_vect)
 <pre><code data-trim class="cpp">#include &lt;avr/io.h&gt;
 
 {
-    TCCR1A = 0;
-    TCCR1C = 0;
-    TCNT1  = 0;
-    OCR1A  = 7812;
-    TIMSK1 = 1 << OCIE1A;
-    TIFR1  = 0xFF;
-    // Set TCCR1B last because setting CS starts the T/C
+    TCCR1A = 0;            // Control Reg A
+    TCCR1C = 0;            // Control Reg C
+    TCNT1  = 0;            // Timer/Counter 1 -- the counter itself
+    OCR1A  = 7812;         // Output Compare Reg A
+    TIMSK1 = 1 << OCIE1A;  // Int Mask = Output Compare A Int Enable
+    TIFR1  = 0xFF;         // Interrupt Flag Reg
+    // Set Control Reg B last because setting Clock Select (CS) starts the T/C
     TCCR1B = (1 << WGM12) | (5 << CS10);
 }</code></pre>
 </section>
@@ -745,6 +769,9 @@ ISR(TIMER0_COMPA_vect)
     </ul>
   </li>
 </ul>
+<aside class="notes">
+	Answer: TIMER1_COMPA_vect, NOT TIMER1_OVF_vect -- overflow only occurs at 0xFFFF, which we never reach!
+</aside>
 </section>
 
 
@@ -753,7 +780,7 @@ ISR(TIMER0_COMPA_vect)
   <li>Toggle a port pin value by writing PINx:
 	<ul>
 		<li><pre class="inline"><code data-trim class="cpp">PINE = 1 << PE6;</code></pre></li>
-		<li>Little known AVR feature</li>
+		<li>Little known (but documented) AVR feature</li>
 	</ul>
   </li>
   <li>Save power by using Sleep Mode in main loop
@@ -802,8 +829,12 @@ ISR(TIMER0_COMPA_vect)
 		<small>(German: <strong>K</strong>athode = <strong>k</strong>urzes Bein)</small></li>
 	<li>An LED's brightness depends on current</li>
 	<li>Typical I<sub>F</sub>: 10..20 mA</li>
+	<li>Add "dropper resistor" in series to get the right current</li>
 	<li>Let's check the datasheet for the expected V<sub>F</sub>: <a href="http://www.kingbrightusa.com/images/catalog/SPEC/WP113SRDT.pdf">bit.ly/1IbHPdP</a> (PDF)</li>
 </ul>
+<aside class="notes">
+	Draw typical LED schematic with VDD, resistor, LED, GND.
+</aside>
 </section>
 
 
@@ -839,6 +870,9 @@ ISR(TIMER0_COMPA_vect)
 	<li>&rArr; R = (V<sub>DD</sub> - V<sub>F</sub>) / I<sub>F</sub> &asymp; 160 &Omega;</li>
 	<li>Pick next higher standard value: 180 &Omega;</li>
 </ul>
+<aside class="notes">
+	Explain LED formula using the schematic you drew.
+</aside>
 </section>
 
 
@@ -940,6 +974,9 @@ ISR(TIMER0_COMPA_vect)
           <ul><li>by adding a low-Z path.</li></ul>
         </li>
 </ul>
+<aside class="notes">
+	Draw picture of port pin as capacitor and button to GND.
+</aside>
 </section>
 
 
@@ -966,6 +1003,9 @@ ISR(TIMER0_COMPA_vect)
          </ul>
         </li>
 </ul>
+<aside class="notes">
+	Add pull-up resistor to drawing.
+</aside>
 </section>
 
 
@@ -1005,6 +1045,9 @@ ISR(TIMER0_COMPA_vect)
           </ol>
         </li>
 </ul>
+<aside class="notes">
+	Draw button signal in time plot so the "edge" can be seen.
+</aside>
 </section>
 
 
@@ -1043,7 +1086,7 @@ ISR(TIMER0_COMPA_vect)
         <li>Only a problem with edge triggering</li>
 </ul>
 
-<aside class="notes">Hier kann man aufm Oszi zeigen, wie ein Taster prellt</aside>
+<aside class="notes">Show bouncing on oscilloscope if there's enough time.</aside>
 </section>
 
 
@@ -1093,6 +1136,9 @@ ISR(TIMER0_COMPA_vect)
         <ul><li>Trigger on rising edge, falling edge, or low level</li></ul></li>
 </ul>
 <p>Check out datasheet chapter 11 for details</p>
+<aside class="notes">
+	Both methods remove the polling aspect, but you can't debounce them by simply polling slowly -- digital filtering is needed.
+</aside>
 </section>
 
 
@@ -1164,6 +1210,9 @@ pulse latch pin</code>
 	<li>Clock and latch pins can be tied together</li>
 	<li>Infinite shift register! \o/</li>
 </ul>
+<aside class="notes">
+	Not arbitrarily infinite. Shift propagation delay is not the problem, because all regs start shifting at the same time, so you only get that once. CLK and LATCH fan-out will become a problem after a while, though.
+</aside>
 </section>
 
 
@@ -1214,6 +1263,9 @@ pulse latch pin</code>
 	</li>
 	<li>Now place LEDs and resistors</li>
 </ul>
+<aside class="notes">
+	Fresh out of the tube, the chips' pins are at an angle. Carefully bend them into right angle by putting the pins on a flat surface and applying force to the chip itself.
+</aside>
 </section>
 
 
@@ -1245,7 +1297,7 @@ pulse latch pin</code>
 		<ul>
 			<li>Do you need delays between bits?</li>
 			<li class="fragment">t<sub>pd,SHCP..Q7S</sub> = 32 ns; t<sub>W,SHCP</sub> = 6 ns<br/>
-				1 / 40 ns = 25 MHz, so we're safe at 16 MHz</li>
+				&rarr; need ~40 ns pulse, 1 / 16 MHz = 62,5 ns &rarr; safe
 		</ul>
 	</li>
 </ul>
@@ -1264,6 +1316,9 @@ pulse latch pin</code>
 		</ul>
 	</li>
 </ul>
+<aside class="notes">
+	Demonstrate on oscilloscope if time permits.
+</aside>
 </section>
 
 
