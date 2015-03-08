@@ -52,6 +52,9 @@
   </div>
   <img src="lib/external/ccbyncsa.png">
   <div style="margin-top: 3em">View online: <a href="https://rawgit.com/shackspace/uc-basics/master/index.html">bit.ly/uc-basics</a></div>
+<aside class="notes">
+	Note regarding parts: Don't hand out parts right away; people will natually look at them, play with them, and generally pay less attention. Rather hand out parts just before you build anything, and only the parts needed for the module, so fast people can't work too far in advance.
+</aside>
 </section>
 
 <section><h3>Today's Goals</h3>
@@ -188,6 +191,31 @@ R.I.P., my friend
 <aside class="notes">
 	Mention that box colors correspond to previous slide.
 </aside>
+</section>
+
+<section><h3>AVR 8-bitness</h3>
+<ul>
+	<li>AVR is an 8-bit CPU
+	<ul>
+		<li>Each instruction takes 8-bit operands</li>
+		<li>More bits are emulated with multiple instructions</li>
+	</ul>
+	</li>
+	<li class="fragment"><strong>Caveat:</strong> <code>int</code> defaults to 16 bits!
+	<ul>
+		<li>&rarr; Wasted cycles if 8 bits are enough</li>
+		<li>Make it a habit to use uint8_t</li>
+	</ul>
+	</li>
+	<li class="fragment"><code>#include &lt;inttypes.h&gt;</code>
+	<ul>
+		<li><table>
+			<tr><td><code>uintN_t</code></td><td>unsigned integer, N bits</td></tr>
+			<tr><td><code>intN_t</code></td><td>signed integer, N bits</td></tr>
+		</table></li>
+	</ul>
+	</li>
+</ul>
 </section>
 
 
@@ -550,6 +578,12 @@ clock_prescale_set(clock_div_1);</code></pre>
 </section>
 
 
+<section><h3>Bonus task!</h3>
+<p>Make the LED morse SOS, or even arbitrary text.</p>
+</section>
+
+
+
 <!--
 #######################################################
 #######################################################
@@ -669,6 +703,7 @@ ISR(TIMER0_COMPA_vect)
   <li>We want to wait for a given time, generate an IRQ, repeat</li>
   <li class="fragment">CTC mode (14.8.2) sounds like the one for us:
     <ul>
+	  <li>"Clear Timer on Compare match"</li>
       <li>Count to N, interrupt, start back at zero.</li>
     </ul>
   </li>
@@ -775,6 +810,20 @@ ISR(TIMER0_COMPA_vect)
 </section>
 
 
+<section><h3>Bonus tasks!</h3>
+<ol>
+  <li>Save power by using Sleep Mode in main loop
+    <ul>
+      <li>Chapter 7 of datasheet<br/>
+        avr-libc sleep mode documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a>
+      </li>
+    </ul>
+  </li>
+  <li>Again, get the LED to morse text</li>
+</ol>
+</section>
+
+
 <section><h3>Tips & Tricks</h3>
 <ul>
   <li>Toggle a port pin value by writing PINx:
@@ -782,13 +831,6 @@ ISR(TIMER0_COMPA_vect)
 		<li><pre class="inline"><code data-trim class="cpp">PINE = 1 << PE6;</code></pre></li>
 		<li>Little known (but documented) AVR feature</li>
 	</ul>
-  </li>
-  <li>Save power by using Sleep Mode in main loop
-    <ul>
-      <li>Chapter 7 of datasheet<br/>
-        avr-libc sleep mode documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a>
-      </li>
-    </ul>
   </li>
 </ul>
 </section>
@@ -906,6 +948,15 @@ ISR(TIMER0_COMPA_vect)
 	</li>
 </ul>
 </section>
+
+
+<section><h3>Bonus task!</h3>
+<ul>
+	<li>Invent other, more complex patterns</li>
+	<li>(from inside to outside, binary counter, etc...)</li>
+</ul>
+</section>
+
 
 
 <!--
@@ -1125,6 +1176,11 @@ ISR(TIMER0_COMPA_vect)
 </ul>
 </section>
 
+
+<section><h3>Bonus task!</h3>
+<p>Use EEPROM to store state across power cycling</p>
+<p>Read up on EEPROM at <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__eeprom.html">bit.ly/1A8vzaw</a></p>
+</section>
 
 
 <section><h3>Further reading</h3>
