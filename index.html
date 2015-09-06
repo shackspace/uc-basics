@@ -145,7 +145,7 @@ R.I.P., my friend
 
 <section><h3>Limitations</h3>
 <ul>
-  <li class="fragment" data-fragment-index="1">A uC ain't a PC!</li>
+  <li class="fragment" data-fragment-index="1">A &micro;C ain't a PC!</li>
   <li class="fragment" data-fragment-index="1">Optimized for low power and size</li>
   <li class="fragment" data-fragment-index="1">Slow compared to a PC or a smartphone</li>
   <li class="fragment" data-fragment-index="2">Little RAM</li>
@@ -322,9 +322,18 @@ R.I.P., my friend
 <ul>
 	<li>Startup code, platform support</li>
 	<li>Standard C library functions</li>
-	<li>Access to uC specialties (<code>avr/*.h</code>)</li>
-	<li class="fragment" data-fragment-index="2">Home page: <a href="http://www.nongnu.org/avr-libc/">http://bit.ly/1yI2MN0</a></li>
-	<li class="fragment" data-fragment-index="2">Prettier docs: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">http://bit.ly/1CduWR7</a></li>
+	<li>Access to &micro;C specialties (<code>avr/*.h</code>)</li>
+	<li class="fragment" data-fragment-index="2">Home page: <a href="http://www.nongnu.org/avr-libc/">bit.ly/1yI2MN0</a></li>
+	<li class="fragment" data-fragment-index="2">Prettier docs: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">bit.ly/1CduWR7</a></li>
+</ul>
+</section>
+
+
+<section><h3>Bit operations</h3>
+<ul>
+	<li>Indispensable when writing &micro;C code</li>
+	<li>So we prepared a cheat sheet for you</li>
+	<li>Get the PDF: <a href="https://github.com/shackspace/uc-basics/raw/master/bitops_cheatsheet.pdf">bit.ly/8bitcheat</a></li>
 </ul>
 </section>
 
@@ -458,7 +467,7 @@ brew install dfu-programmer</pre></li>
   <li>Windows
     <ul>
       <li>AVR 8-bit Toolchain: <a href="http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx">bit.ly/1gHcJTy</a></li>
-      <li>FLIP programmer: <a href="http://www.atmel.com/tools/FLIP.aspx">bit.ly/1hEOZuC</a></li>
+      <li>FLIP programmer: <a href="http://www.atmel.com/tools/FLIP.aspx">bit.ly/1hEOZ&micro;C</a></li>
       <li>USB driver, if necessary: <a href="http://shackspace.de/wiki/lib/exe/fetch.php?media=project:tinymega:atm32u4dfu.zip">bit.ly/SXghXb</a> (ZIP)</li>
     </ul>
   </li>
@@ -531,7 +540,7 @@ int main(void)
 <img src="lib/screenshots/flip.png">
 <p>Make sure "Reset" is turned off for your first programs</p>
 <aside class="notes">
-	No need to mention this, but if anyone asks: "Reset" would reset the device using the watchdog. If the user program doesn't disable the watchdog, the uC will repeatedly reset. Unchecking "reset" will make the bootloader jump to the user program, so the uC state may not be exactly as after a reset.
+	No need to mention this, but if anyone asks: "Reset" would reset the device using the watchdog. If the user program doesn't disable the watchdog, the &micro;C will repeatedly reset. Unchecking "reset" will make the bootloader jump to the user program, so the &micro;C state may not be exactly as after a reset.
 </aside>
 </section>
 
@@ -667,7 +676,7 @@ ISR(TIMER0_COMPA_vect)
     // Code goes here
 }</code></pre>
 
-<div>See <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">http://bit.ly/15b5KgO</a> for possible interrupt names</div>
+<div>See <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">bit.ly/15b5KgO</a> for possible interrupt names</div>
 </section>
 
 
@@ -815,7 +824,7 @@ ISR(TIMER0_COMPA_vect)
   <li>Save power by using Sleep Mode in main loop
     <ul>
       <li>Chapter 7 of datasheet<br/>
-        avr-libc sleep mode documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a>
+        avr-libc sleep mode documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">bit.ly/1yMSooS</a>
       </li>
     </ul>
   </li>
@@ -1468,11 +1477,11 @@ pulse latch pin</code>
 
 <section><h3>Links to relevant avr-libc docs</h3>
 <ul>
-	<li>Base documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">http://bit.ly/1CduWR7</a></li>
-	<li>Interrupts: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">http://bit.ly/15b5KgO</a></li>
-	<li>Power & Clocks: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__power.html">http://bit.ly/1BGLSAr</a></li>
-	<li>Sleep mode: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">http://bit.ly/1yMSooS</a></li>
-	<li>EEPROM access: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__eeprom.html">http://bit.ly/1Bf4qFh</a></li>
+	<li>Base documentation: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/">bit.ly/1CduWR7</a></li>
+	<li>Interrupts: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__interrupts.html">bit.ly/15b5KgO</a></li>
+	<li>Power & Clocks: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__power.html">bit.ly/1BGLSAr</a></li>
+	<li>Sleep mode: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__sleep.html">bit.ly/1yMSooS</a></li>
+	<li>EEPROM access: <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__eeprom.html">bit.ly/1Bf4qFh</a></li>
 </ul>
 </section>
 
