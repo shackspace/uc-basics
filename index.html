@@ -103,6 +103,7 @@
     </ul>
   </li>
 </ul>
+<aside class="notes">Also ask about prior C knowledge and let people know that this is not a C workshop and we wont help you with C problems</aside>
 </section>
 
 <section><h3>Dedicated to</h3>
@@ -130,6 +131,7 @@ R.I.P., my friend
 <div class="example_photo photowrapper"><img src="lib/external/ranciliocoffeemachine.png"><span class="unimportant">CC-BY-NC<br/>Gregor Jehle, Faye Yu</span></div>
 <div class="example_photo photowrapper"><img src="lib/external/samsungcrystalblue.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
 <div class="example_photo photowrapper"><img src="lib/external/samsungmicrowave.png"><span class="unimportant">CC-BY-NC-SA<br/>Gregor Jehle, Samsung Tomorrow</span></div>
+<aside class="notes">uC are everywhere. Whenever something has to be measured and/or controlled, a uC is in there somewhere.</aside>
 </section>
 
 
@@ -140,6 +142,7 @@ R.I.P., my friend
 <tr><td>F</td><td>-</td><td>Program Flash</td></tr>
 <tr><td>P</td><td>-</td><td>Craploads of Peripherals</td></tr>
 </table></li><ul>
+<aside class="notes">CPU, a <em>lot</em> of I/O, a whole bunch of peripherals, some RAM for computing &amp; flash for storing your program. Everything connected via a bus</aside>
 </section>
 
 
@@ -153,6 +156,7 @@ R.I.P., my friend
                                                &rArr; using <code>float</code> or <code>double</code> will be very very very very slow!</li>
   <li class="fragment" data-fragment-index="2">Sometimes not even HW multiplication</li>
 </ul>
+<aside class="notes">For some time now there's <em>very</em> powerfull uC that get close to what PCs where a few years back. A uC is the one-package solution of CPU, RAM, and peripherals.</aside>
 </section>
 
 
@@ -184,6 +188,7 @@ R.I.P., my friend
 
 <section><h3>The ATmega32U4 microcontroller</h3>
 <img src="lib/uc_components.svg">
+<aside class="notes">Attention! This is the <em>simple</em> abstraction of a uC, now for reality.</aside>
 </section>
 
 <section><h3>The ATmega32U4 microcontroller</h3>
@@ -248,6 +253,7 @@ R.I.P., my friend
       <li class="fragment" data-fragment-index="4">General intro to datasheets will follow later</li>
       <li class="fragment" data-fragment-index="5">Get it here: <a href="http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf">bit.ly/1Ht3JLj</a> (PDF)<br/>
       <small>(Note: Hover any shortened link to see where it leads)</small></li>
+      <li class="fragment" data-fragment-index="6">This is where you get out your pen &amp; paper so you can take notes about things you had to look up.</li>
     <ul>
     </div>
     <div class="td" id="dontpanic">
@@ -309,7 +315,7 @@ R.I.P., my friend
     <li>Main loop</li>
   </ul>
 </li>
-<li class="fragment">avr-libc takes care of the gory stuff</li>
+<li class="fragment">avr-libc takes care of the <em>really</em> gory stuff</li>
 <li class="fragment"><strong>Caveat:</strong> Don't exit the main-loop</li>
 </ul>
 <aside class="notes">
@@ -383,6 +389,7 @@ R.I.P., my friend
       <li class="fragment"><strong>Caveat:</strong> Not all ports have all pins populated!</li>
     </ul>
 </div>
+<aside class="notes">If anyone asks: Port A used to be available in <em>very</em> old Atmel controllers. No longer relevant.</aside>
 </section>
 
 <section><h3>Port control though registers</h3>
@@ -528,7 +535,7 @@ int main(void)
   </li>
 </ol>
 <br/><br/>
-<span class="fragment">Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> group.</span>
+<span class="fragment">Rumor has it you can save on <pre class="inline">sudo</pre> by adding your user to the <pre class="inline">uucp</pre> or <pre class="inline">serial</pre> group.</span>
 </p>
 <aside class="notes">
 	The default bootloader works in "secure" mode where the only allowed first operation after power-up is erase.
@@ -582,7 +589,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 </ul>
 <br/><br/>
 <aside class="notes">
-	Ask whether anyone accidentally made their TinyMega 3.3V. They should use clock_div_2.
+	Ask whether anyone accidentally made their TinyMega 3.3V. They should use clock_div_2. Also use suitable F_CPU!
 </aside>
 </section>
 
@@ -624,7 +631,7 @@ clock_prescale_set(clock_div_1);</code></pre>
 <ul>
   <li>Hogs CPU cycles ("busy waiting" or "polling")</li>
   <li>Burns power: CPU constantly busy</li>
-  <li>Adding work will make accurate timing difficult/impossible</li>
+  <li>More complex tasks will be difficult/impossible to time accurately</li>
 </ul>
 </section>
 
@@ -643,9 +650,9 @@ clock_prescale_set(clock_div_1);</code></pre>
 <ul>
   <li>Asynchronous interruption of program flow</li>
   <li>Can happen at any time, triggered by hardware</li>
-  <li class="fragment">Many IRQ sources with own handlers
+  <li class="fragment">Many IRQ sources with individual handlers
     <ul>
-      <li>Timer overflow, Timer compare, Pin toggle, ...</li>
+      <li>Timer overflow, Timer compare, Pin change, ...</li>
     </ul>
   </li>
   <li class="fragment">Can be enabled / disabled globally
@@ -695,6 +702,7 @@ ISR(TIMER0_COMPA_vect)
     </ul>
   </li>
 </ul>
+<aside class="notes">volatile prevents the compiler from optimizing out repeated reads if it thinks there was no write in between.</aside>
 </section>
 
 
@@ -704,6 +712,7 @@ ISR(TIMER0_COMPA_vect)
   <li class="fragment">o.O So many options!<br/>
     Let's pick a few that make sense for us</li>
 </ul>
+<aside class="notes">T/Cs are <em>very</em> powerful. It's well worth reading the whole chapter over a glass of whisky.</aside>
 </section>
 
 
@@ -726,7 +735,7 @@ ISR(TIMER0_COMPA_vect)
   <li>We want to wait for half a second</li>
   <li class="fragment">Choose slowest prescaler value of CLK/1024
     <ul>
-	  <li>How many ticks per second?</li>
+	  <li>Question: How many ticks per second?</li>
       <li class="fragment">15625 ticks per second</li>
     </ul>
   </li>
@@ -754,6 +763,7 @@ ISR(TIMER0_COMPA_vect)
     </ul>
   </li>  
 </ul>
+<aside class="notes">First explain that there are 3 registers. For every fragment, ALT-TAB to the relevant parts of the datasheet to extract the info.</aside>
 </section>
 
 
@@ -884,7 +894,8 @@ ISR(TIMER0_COMPA_vect)
 	<li>Let's check the datasheet for the expected V<sub>F</sub>: <a href="http://www.kingbrightusa.com/images/catalog/SPEC/WP113SRDT.pdf">bit.ly/1IbHPdP</a> (PDF)</li>
 </ul>
 <aside class="notes">
-	Draw typical LED schematic with VDD, resistor, LED, GND.
+	Draw typical LED schematic with VDD, resistor, LED, GND.<br/>
+    Briefly open the LED datasheet, scroll through quickly, then explain datasheets in general using the next slide.
 </aside>
 </section>
 
@@ -911,6 +922,7 @@ ISR(TIMER0_COMPA_vect)
 	</li>
 	
 </ul>
+<aside class="notes">Now go through the actual LED datasheet in more detail.</aside>
 </section>
 
 
@@ -1013,10 +1025,11 @@ ISR(TIMER0_COMPA_vect)
   </li>
   <li>Idea: Push to connect input pin to VDD
     <ul>
-      <li>But what happens while not pushed?</li>
+      <li>Question: But what happens while not pushed?</li>
     </ul>
   </li>
 </ul>
+<aside class="notes">Not pressed = floating. But that's explained next slide.</aside>
 </section>
 
 <section><h3>High-Z / floating state</h3>
@@ -1035,7 +1048,8 @@ ISR(TIMER0_COMPA_vect)
         </li>
 </ul>
 <aside class="notes">
-	Draw picture of port pin as capacitor and button to GND.
+	Draw picture of port pin as capacitor and button to VDD.
+    Low-Z does <em>not</em> mean short circuit!
 </aside>
 </section>
 
@@ -1064,7 +1078,7 @@ ISR(TIMER0_COMPA_vect)
         </li>
 </ul>
 <aside class="notes">
-	Add pull-up resistor to drawing.
+	Add pull-down resistor to drawing.
 </aside>
 </section>
 
@@ -1072,7 +1086,7 @@ ISR(TIMER0_COMPA_vect)
 <section><h3>Full circuit</h3>
 <ul>
         <li>Either pull-down with button to VDD or pull-up with button to GND
-          <ul><li>Which one should we use?</li></ul>
+          <ul><li>Question: Which one should we use?</li></ul>
         </li>
         <li class="fragment" data-fragment-index="2">Reminder: ATmega pins have optional internal pull-up!
           <ul><li>So choose pull-up with button to GND</li></ul>
@@ -1081,6 +1095,7 @@ ISR(TIMER0_COMPA_vect)
           <ul><li>If we read a <em>zero</em>, the button is <em>pushed</em></li></ul>
         </li>
 </ul>
+<aside class="notes">Draw pull-up variant with button to GND. Pull-up with button to GND is preferred (button is never connected to VDD)</aside>
 </section>
 
 
@@ -1298,6 +1313,7 @@ pulse latch pin</code>
 		</ul>
 	</li>
 </ul>
+<aside class="notes">There's also a 4000 series which is CMOS based</aside>
 </section>
 
 
@@ -1368,6 +1384,10 @@ pulse latch pin</code>
 </ul>
 </section>
 
+<section><h3>Bonus task!</h3>
+<p>Earlier we wrote: Don't try to be smart.</p>
+<p>Now try to be smart.</p>
+</section>
 
 <section><h3>Aside: Debugging technique</h3>
 <ul>

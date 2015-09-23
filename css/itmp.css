@@ -145,6 +145,7 @@ div.td { display: table-cell; }
 
 #dontpanic {
     width: 30%;
+    vertical-align: top;
 }
 #dontpanic > img {
     width: 80%;
@@ -165,3 +166,4 @@ div.td { display: table-cell; }
 #inputrange img {
     width: 80%;
 }
+
