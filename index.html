@@ -717,7 +717,8 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Choosing a mode</h3>
 <ul>
-  <li>We want to wait for a given time, generate an IRQ, repeat</li>
+  <li>T/C1 has over 16 operational modes - which one do we pick?</li>
+  <li class="fragment">We want to wait for a given time, generate an IRQ, repeat</li>
   <li class="fragment">CTC mode (14.8.2) sounds like the one for us:
     <ul>
 	  <li>"Clear Timer on Compare match"</li>
@@ -730,12 +731,13 @@ ISR(TIMER0_COMPA_vect)
 
 <section><h3>Choosing a prescaler</h3>
 <ul>
-  <li>T/C1 can count up to 65535</li>
-  <li>We want to wait for half a second</li>
+  <li>T/C1 can run at several different speeds between CLK and CLK/1024</li>
+  <li class="fragment">T/C1 can count up to 65535</li>
+  <li class="fragment">We want to wait for half a second</li>
   <li class="fragment">Choose slowest prescaler value of CLK/1024
     <ul>
 	  <li>Question: How many ticks per second?</li>
-      <li class="fragment">15625 ticks per second</li>
+      <li class="fragment">15625 ticks per second at 16 MHz</li>
     </ul>
   </li>
 </ul>
@@ -770,7 +772,8 @@ ISR(TIMER0_COMPA_vect)
 <ul>
   <li>OCR1A - 14.10.9 <small>(Output Compare Register A, T/C 1)</small>
     <ul class="fragment">
-      <li>Determines IRQ frequency</li>
+      <li>Determines IRQ period</li>
+	  <li>F_CPU / 1024 * period_in_seconds</li>
     </ul>
   </li>
   <li>TIMSK1 - 14.10.17 <small>(Timer Interrupt Mask, T/C 1)</small>
@@ -794,7 +797,7 @@ ISR(TIMER0_COMPA_vect)
     TCCR1A = 0;            // Control Reg A
     TCCR1C = 0;            // Control Reg C
     TCNT1  = 0;            // Timer/Counter 1 -- the counter itself
-    OCR1A  = 7812;         // Output Compare Reg A
+    OCR1A  = F_CPU / 2048; // Output Compare Reg A
     TIMSK1 = 1 << OCIE1A;  // Int Mask = Output Compare A Int Enable
     TIFR1  = 0xFF;         // Interrupt Flag Reg
     // Set Control Reg B last because setting Clock Select (CS) starts the T/C
@@ -1126,6 +1129,30 @@ ISR(TIMER0_COMPA_vect)
 
 
 
+<section><h3>Coding Advice</h3>
+<ul>
+	<li>This task proved surprisingly hard to solve due to the levels of brainfuck involved, so here are some important hints:</li>
+	<li class="fragment">Remember you will read a <em>zero</em> when the button is pushed</li>
+	<li class="fragment">Split the complexity into parts:
+		<ul>
+			<li class="fragment">Use a variable to abstract from the inverted button logic:
+				<pre><code>uint8_t button_pressed = ...;</code></pre></li>
+			<li class="fragment">For edge triggering, you need a concept of time:
+<pre><code>uint8_t button_pressed_prev = 0;
+while (1) {
+    uint8_t button_pressed = ...;
+    if (...)
+        larson_step();
+    button_pressed_prev = button_pressed;
+}
+</code></pre></li>
+		</ul>
+	</li>
+</ul>
+</section>
+
+
+
 <section><h3>Now go forth and code!</h3>
 <ul>
         <li>Task: Advance Larson Scanner manually instead of timer
@@ -1373,6 +1400,7 @@ pulse latch pin</code>
 			<li>Use a simple loop, don't try to be smart</li>
 		</ul>
 	</li>
+<!--
 	<li>Question:
 		<ul>
 			<li>Do you need delays between bits?</li>
@@ -1380,13 +1408,11 @@ pulse latch pin</code>
 				&rarr; need ~40 ns pulse, 1 / 16 MHz = 62,5 ns &rarr; safe
 		</ul>
 	</li>
+-->
 </ul>
+<aside class="notes">After a while, or when the first people finish, interrupt the coding phase to show debugging techniques and wrap up.</aside>
 </section>
 
-<section><h3>Bonus task!</h3>
-<p>Earlier we wrote: Don't try to be smart.</p>
-<p>Now try to be smart.</p>
-</section>
 
 <section><h3>Aside: Debugging technique</h3>
 <ul>
@@ -1461,6 +1487,7 @@ pulse latch pin</code>
 <section><h3>That is all.</h3>
 <h2>Now go forth and make stuff!</h2>
 <p>Thank you for attending.</p>
+<aside class="notes">Everyone's free to leave as they finish</aside>
 </section>
 
 <!--
