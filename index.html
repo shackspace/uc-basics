@@ -111,6 +111,31 @@ Jan-Bernd Themann<br/>
 R.I.P., my friend
 </section>
 
+
+<section><h3>Feedback</h3>
+<p>Please speak up any time you have feedback.<br/>
+We also gladly take feedback via mail =)</p>
+
+<ul>
+	<li>Scope:
+		<ul><li>Too much information for one day or not?</li></ul>
+	</li>
+	<li>Granularity:
+		<ul><li>Too many details somewhere? Too little? Just fine?</li></ul>
+	</li>
+	<li>Prerequisites:
+		<ul><li>Did we expect too much prior knowledge anywhere?</li></ul>
+	</li>
+	<li>Speed:
+		<ul><li>Did we go too fast / too slow?</li></ul>
+	</li>
+	<li>Simplicity:
+		<ul><li>Were we hard to follow anywhere?</li></ul>
+	</li>
+</ul>
+</section>
+
+
 <!--
 #######################################################
 #######################################################
@@ -269,13 +294,21 @@ R.I.P., my friend
 	<li>Arduino hides the gory details</li>
 	<li class="fragment" data-fragment-index="2">Pro: Easier to learn, quick prototyping</li>
 	<li class="fragment" data-fragment-index="3">Con: You don't understand how it's done &rarr; "magic"</li>
-	<li class="fragment" data-fragment-index="3">Con: Arduino trades speed & size for simplicity</li>
+	<li class="fragment" data-fragment-index="3">Con: Arduino trades speed &amp; size for simplicity</li>
 </ul>
 <aside class="notes">
 	Speed trade-off example: Mapping of pin numbers to ATmega ports/pins via table, so several instructions / memory access vs. single bit set/clear instruction.
 </aside>
 </section>
 
+
+<section><h3>Interlude: Bit Operations & uC Patterns</h3>
+<ul>
+	<li>What is this shift?</li>
+	<li>Why would you (1 &lt;&lt; PD6)?</li>
+	<li>To the blackboard!</li>
+</ul>
+</section>
 
 <!--
 #######################################################
@@ -565,6 +598,7 @@ int main(void)
       <li>Remember to set the pin to output first</li>
       <li>Use a simple delay loop, nothing fancy</li>
       <li>We left a trap for you to discover, so call us if you run into problems ;)</li>
+      <li><strong>If you're done, come to the front to order lunch!</strong></li>
     </ul>
   </li>
 </ul>
@@ -1213,7 +1247,7 @@ while (1) {
 </section>
 
 
-
+<!--
 <section><h3>Now go forth and code!</h3>
 <ul>
         <li>Task: Debounce your button</li>
@@ -1231,7 +1265,7 @@ while (1) {
 <p>Use EEPROM to store state across power cycling</p>
 <p>Read up on EEPROM at <a href="http://www.atmel.com/webdoc/AVRLibcReferenceManual/group__avr__eeprom.html">bit.ly/1A8vzaw</a></p>
 </section>
-
+-->
 
 <section><h3>Further reading</h3>
 <p>ATmega has ways of causing interrupts when an input changes</p>
@@ -1461,7 +1495,7 @@ pulse latch pin</code>
 -->
 
 <section><h3>Feedback</h3>
-<p>This is the first time we're doing this, so we need your input!</p>
+<p>Please help us improve this workshop!</p>
 <ul>
 	<li>Scope:
 		<ul><li>Too much information for one day or not?</li></ul>
@@ -1481,7 +1515,6 @@ pulse latch pin</code>
 </ul>
 <p>We also gladly take feedback via mail =)</p>
 </section>
-
 
 
 <section><h3>That is all.</h3>
